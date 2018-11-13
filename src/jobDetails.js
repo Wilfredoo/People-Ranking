@@ -2,7 +2,7 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import axios from 'axios';
 
-export class JobConfirm extends React.Component {
+export class JobDetails extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -47,8 +47,6 @@ export class JobConfirm extends React.Component {
         <p>Direccion: {this.state.jobData.data.address}</p>
         <p>Numero: {this.state.jobData.data.phone}</p>
         <p>Preguntar por: {this.state.jobData.data.contact}</p>
-        <input type="submit" value="Corregir"/>
-        <Link to = "/"><input type="submit" value="Publicar"/></Link>
     </form>
 </div>);
     }

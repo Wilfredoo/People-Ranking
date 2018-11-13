@@ -1,15 +1,15 @@
-DROP TABLE IF EXISTS posts;
+DROP TABLE IF EXISTS jobs;
 
 CREATE TABLE jobs(
     id SERIAL PRIMARY KEY,
-    restName VARCHAR(300) NOT NULL,
-    jobType VARCHAR(255) NOT NULL,
-    hourPay INT NOT NULL,
-    typePay VARCHAR(255) NOT NULL,
-    schedule VARCHAR(255) NOT NULL,
-    contact VARCHAR(10) NOT NULL,
-    address VARCHAR(255) NOT NULL,
-    phone INT NOT NULL,
-    area VARCHAR(255) NOT NULL,
+    restName VARCHAR(300),
+    jobType VARCHAR(255),
+    hourPay INT ,
+    typePay VARCHAR(255) ,
+    schedule VARCHAR(255),
+    contact VARCHAR(10) ,
+    address VARCHAR(255),
+    phone INT ,
+    area VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

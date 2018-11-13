@@ -8,7 +8,6 @@ export class JobForm extends React.Component {
         this.state = {
             value: ''
         };
-
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -16,19 +15,20 @@ export class JobForm extends React.Component {
     handleChange(event) {
         this.setState({
             [event.target.name]: event.target.value
-        });
+        },() => { console.log("state in handle change: ");});
     }
 
     handleSubmit(event) {
-        console.log("I am working", this.state);
         event.preventDefault();
         axios.post('/createJob', this.state).then(resp => {
-            location.replace('/')
+            console.log(this);
+            if (resp.data.success) {
+            this.props.history.push('/jobConfirm');
+        }
         })
     }
 
     render() {
-
         return (
 <div>
             < form onSubmit = {
@@ -36,36 +36,33 @@ export class JobForm extends React.Component {
         } >
 
         <p>Como se llama su restaurante?</p>
-        <input type="text" name="restname"  onChange={this.handleChange}/>
+        <input type="text" name="restname"  required onChange={this.handleChange}/>
 
     <p>Que puesto busca?</p>
-        <select name="jobtype" onChange={this.handleChange}>
-            <option >Line Cook</option>
-            <option >Lavaplatos</option>
-            <option >Cocinero</option>
-            <option >Pora</option>
-            <option >Mesero</option>
-            <option >Porter</option>
-            <option >Otro</option>
+        <select type="text" name="jobtype" required onChange={this.handleChange}>
+            <option value=""></option>
+            <option value="Line Cook">Line Cook</option>
+            <option value="Lavaplatos">Lavaplatos</option>
+            <option value="Cocinero">Cocinero</option>
+            <option value="Pora">Pora</option>
+            <option value="Mesero">Mesero</option>
+            <option value="Porter">Porter</option>
+            <option value="Otro">Otro</option>
         </select>
-
         <p>Cuanto paga la hora?</p>
-        <input type="text" name="hourpay" onChange={this.handleChange}/>
-
+        <input type="text" name="hourpay" required onChange={this.handleChange}/>
         <p>Paga en cheque o cash?</p>
-
-        <span><label   htmlFor="cash">Cash</label><input type="radio" name="typepay" value="cash" onChange={this.handleChange} /></span>
+        <span><label htmlFor="cash">Cash</label><input type="radio" name="typepay" value="cash" required onChange={this.handleChange} /></span>
         <span><label onChange={this.handleChange} htmlFor="ambos">Ambos</label><input type="radio" value="ambos" name="typepay" onChange={this.handleChange} /></span>
         <span><label onChange={this.handleChange} htmlFor="cheque">Cheque</label><input type="radio" value="cheque" name="typepay" onChange={this.handleChange}/></span>
-
-    <p>Direccion del restaurante:</p>
-        <input type="text" name="address"  onChange={this.handleChange}/>
+        <p>Cual es el horario?</p>
+        <input type="text" name="schedule" required onChange={this.handleChange}/>
+        <p>Direccion del restaurante:</p>
+        <input type="text" name="address"  required onChange={this.handleChange}/>
         <p>Numero de celular (opcional)?</p>
-        <input type="number" name="phone" onChange={this.handleChange}/>
-
+        <input type="number" name="phone" required onChange={this.handleChange}/>
         <p>Por quien preguntar?</p>
-        <input type="text" name="contact"  onChange={this.handleChange}/>
-
+        <input type="text" name="contact" required onChange={this.handleChange}/>
         <input type="submit" value="Finalizar"/>
 
     </form>

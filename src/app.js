@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import {Buttons} from './buttons';
-import {Detail} from './detail';
+import {JobDetails} from './jobdetails';
 import {JobConfirm} from './jobConfirm.js';
 import {JobForm} from './jobForm';
 import {Jobs} from './jobs';
@@ -15,7 +15,10 @@ export class App extends React.Component {
     render() {
         return (<BrowserRouter>
             <div>
-                <Route exact path="/" component={JobForm}/>
+                <Route exact="exact" path="/jobform" component={JobForm}/>
+                <Route exact="exact" path="/" component={Jobs}/>
+                <Route exact="exact" path="/jobConfirm" component={JobConfirm}/>
+                <Route exact="exact" path="/jobdetails" component={JobDetails}/>
             </div>
         </BrowserRouter>)
     }
