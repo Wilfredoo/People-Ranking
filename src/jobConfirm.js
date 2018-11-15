@@ -37,19 +37,50 @@ export class JobConfirm extends React.Component {
     }
 
         return (
-<div>
+<div className="jobConfirmPage">
     <form onSubmit = {this.handleSubmit} >
-        <p>Restaurante: {this.state.jobData.data.restname}</p>
-        <p>Puesto: {this.state.jobData.data.jobtype}</p>
-        <p>Salario: {this.state.jobData.data.hourpay}</p>
-        <p>Paga en: {this.state.jobData.data.typepay}</p>
-        <p>Horario: {this.state.jobData.data.schedule}</p>
-        <p>Direccion: {this.state.jobData.data.address}</p>
-        <p>Numero: {this.state.jobData.data.phone}</p>
-        <p>Preguntar por: {this.state.jobData.data.contact}</p>
-        <input type="submit" value="Corregir"/>
-        <Link to = "/"><input type="submit" value="Publicar"/></Link>
-    </form>
+
+        <h1 className="confirmTitle">Confirme la informacion es correcta:</h1>
+        <table>
+            <tr>
+               <td className="confirmText">Restaurante:</td>
+               <td className="confirmText">{this.state.jobData.data.restname}</td>
+             </tr>
+             <tr>
+               <td className="confirmText">Puesto:</td>
+               <td className="confirmText">{this.state.jobData.data.jobtype}</td>
+             </tr>
+             <tr>
+               <td className="confirmText">Salario:</td>
+               <td className="confirmText">{this.state.jobData.data.hourpay}</td>
+             </tr>
+             <tr>
+               <td className="confirmText">Paga en:</td>
+               <td className="confirmText">{this.state.jobData.data.typepay}</td>
+             </tr>
+             <tr>
+               <td className="confirmText">Horario:</td>
+               <td className="confirmText">{this.state.jobData.data.schedule}</td>
+             </tr>
+             <tr>
+               <td className="confirmText">Direccion:</td>
+               <td className="confirmText">{this.state.jobData.data.address}</td>
+             </tr>
+             <tr>
+               <td className="confirmText">Numero:</td>
+               <td className="confirmText">{this.state.jobData.data.phone}</td>
+             </tr>
+             <tr>
+               <td className="confirmText">Preguntar por:</td>
+               <td className="confirmText">{this.state.jobData.data.contact}</td>
+             </tr>
+         </table>
+
+    <div className="confirmButtons">
+    <input className="confirmButton" type="submit" value="Corregir"/>
+        <Link to = "/"><input className="confirmButton" type="submit"  value="Publicar"/></Link>
+</div>
+</form>
 </div>);
     }
 }

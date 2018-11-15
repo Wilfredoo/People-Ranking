@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import {Buttons} from './buttons';
 import {JobDetails} from './jobdetails';
 import {JobConfirm} from './jobConfirm.js';
 import {JobForm} from './jobForm';
@@ -11,7 +10,6 @@ export class App extends React.Component {
     constructor(props) {
         super(props);
     }
-
     render() {
         return (<BrowserRouter>
             <div>
@@ -19,7 +17,8 @@ export class App extends React.Component {
                 <Route exact="exact" path="/" component={Jobs}/>
                 <Route exact="exact" path="/jobConfirm" component={JobConfirm}/>
                 <Route exact="exact" path="/jobdetails" component={JobDetails}/>
-            </div>
+                <Route path = "/job/:id" render = {props => (<JobDetails {...props} key = {props.match.url} /> )} />
+        </div>
         </BrowserRouter>)
     }
 }
