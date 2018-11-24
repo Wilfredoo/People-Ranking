@@ -4,6 +4,12 @@ import {JobConfirm} from './jobConfirm.js';
 import {JobForm} from './jobForm';
 import {Jobs} from './jobs';
 import {BrowserRouter, Route} from 'react-router-dom'
+import ReactGA from 'react-ga';
+
+function initializeReactGA() {
+    ReactGA.initialize('UA-129656531-1');
+    ReactGA.pageview('/homepage');
+}
 
 export class App extends React.Component {
     constructor(props) {
