@@ -1,11 +1,11 @@
 var spicedPg = require('spiced-pg');
 var bcrypt = require('bcryptjs');
 // var secrets = require('./secrets.json');
-var dbUrl = 'postgres:wilfredo:789@localhost:5432/jobdirecto';
+var dbUrl = process.env.DATABASE_URL || 'postgres:wilfredo:789@localhost:5432/jobdirecto';
 var db = spicedPg(dbUrl);
 
 
-exports.createJob = function(restname, jobtype, hourpay, typepay, schedule, contact, address, area, phone) {
+exports.publishJob = function(restname, jobtype, hourpay, typepay, schedule, contact, address, area, phone) {
     return db.query(`
         INSERT INTO jobs
         (restname, jobtype, hourpay, typepay, schedule, contact, address, area, phone)
@@ -26,8 +26,22 @@ exports.getJobInfo = function(id) {
         })
 }
 
+exports.getDate = function(id) {
+    return db.query(`SELECT created_at FROM jobs WHERE id = $1`, [id])
+        .then(results => {
+            return results.rows[0]
+        })
+}
+
 exports.getJobDetails = function() {
-    console.log("hi there");
+    return db.query(`SELECT id, restname, jobtype, hourpay, typepay, schedule, contact, address, phone FROM jobs WHERE id = $1`, [id])
+        .then(results => {
+            console.log("results in getJobDetails: ", results.rows[0]);
+            return results.rows[0]
+        })
+}
+
+exports.getJobforCorrect = function(id) {
     return db.query(`SELECT id, restname, jobtype, hourpay, typepay, schedule, contact, address, phone FROM jobs WHERE id = $1`, [id])
         .then(results => {
             console.log("results in getJobDetails: ", results.rows[0]);

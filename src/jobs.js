@@ -2,6 +2,8 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import axios from 'axios';
 import Modal from './modal';
+import Moment from 'react-moment';
+import 'moment/locale/es';
 
 export class Jobs extends React.Component {
     constructor(props) {
@@ -12,13 +14,21 @@ export class Jobs extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleClick = this.handleClick.bind(this);
+        this.hideModal = this.hideModal.bind(this);
     }
+
     componentDidMount() {
         axios.get("/getJobs").then(result => {
-            console.log("result in axios /getJobs: ", result.data);
+            console.log("check out this data", result);
             this.setState({jobData: result.data});
         });
+
+        axios.get("/getDate").then(result => {
+            console.log("result in jobs.js axios /getDate: ", result.data);
+            this.setState({dateData: result.data});
+        });
     }
+
     handleChange(event) {
         this.setState({
             [event.target.name]: event.target.value,
@@ -27,13 +37,12 @@ export class Jobs extends React.Component {
             console.log("state in handle change: ", this.state);
         })
     }
+
     handleSubmit(event) {
         location.replace('/jobForm')
     }
 
     handleClick(event) {
-        console.log("STATE jobdata in handle click ",this.state.jobData);
-        console.log("check this out: ", event);
         this.setState({
             show: true,
             selectedJobId: event
@@ -43,13 +52,19 @@ export class Jobs extends React.Component {
     })
     }
 
+    hideModal() {
+        this.setState({show: false}, () => {
+            console.log("state now", this.state);
+        });
+    }
+
     render() {
         if (!this.state.jobData) {
             return null;
         }
         return (
             <div>
-                { this.state.show && <Modal id={this.state.selectedJobId}/>}
+                { this.state.show && <Modal id={this.state.selectedJobId} close={this.hideModal}/>}
             <div className="filtersbutton">
                 <div className="filters">
                     <form onSubmit={this.handleSubmit}>
@@ -61,6 +76,7 @@ export class Jobs extends React.Component {
                             <option value="Pora">Pora</option>
                             <option value="Mesero">Mesero</option>
                             <option value="Porter">Porter</option>
+                            <option value="Cajero">Porter</option>
                             <option value="Otro">Otro</option>
                         </select>
                         <select className="filter" type="text" name="area" onChange={this.handleChange}>
@@ -80,15 +96,17 @@ export class Jobs extends React.Component {
             <div className="allJobs">
                 {
                     this.state.userSelection && this.state.jobData.data.map(data => {
-                        if (this.state.userSelection === data.jobtype) {
+                        if (this.state.userSelection === data.jobtype || this.state.userSelection === data.area) {
                             return (
 
                                 <div onClick={e => this.handleClick(data.id)} className="jobData" key={data.id}>
                                     <h3>{data.restname}
                                         <span className="busca"> busca </span>
                                         {data.jobtype}</h3>
+
                                     <p>Salario: {data.hourpay}$ la hora</p>
                                     <p>Area: {data.area}</p>
+                                    <Moment fromNow>{data.created_at}</Moment>
                                 </div>
                             )
                         }
@@ -104,6 +122,7 @@ export class Jobs extends React.Component {
                                     {data.jobtype}</h3>
                                 <p>Salario: {data.hourpay}$ la hora</p>
                                 <p>Area: {data.area}</p>
+                                <div className="jobMoment"><Moment fromNow>{data.created_at}</Moment></div>
                             </div>
                         )
                     })

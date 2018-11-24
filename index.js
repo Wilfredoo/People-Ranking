@@ -32,8 +32,17 @@ app.use(cookieSession({
 
 
 app.get("/getJobInfo", function(req, res) {
-    console.log("this is req session in index.js: ", req.session);
+    console.log("here is req session in getjobinfo index.js: ", req.session);
     return database.getJobInfo(req.session.jobId).then(data => {
+        res.json({
+            data
+        });
+    });
+});
+
+app.get("/getDate", function(req, res) {
+    console.log("this is req session in index.js: ", req.session);
+    return database.getDate(req.session.jobId).then(data => {
         res.json({
             data
         });
@@ -52,35 +61,62 @@ app.get("/getJobDetails/:id", function(req, res) {
     });
 });
 
+app.get("/getJobforCorrect", function(req, res) {
+    console.log("req session here in correct: ", req.session);
+    return database.getJobInfo(req.session.jobId).then(data => {
+        res.json({
+            data
+        });
+    });
+});
+
 app.get("/getJobs", function(req, res) {
     return database.getJobs().then(data => {
         res.json({
             data
         });
-
-        console.log("is cookie saved?", req.session.restname);
     });
 });
 
-app.post('/createJob', (req, res) => {
-    console.log("is this working?");
-    return database.createJob(req.body.restname, req.body.jobtype, req.body.hourpay, req.body.typepay,
+app.post('/publishJob', (req, res) => {
+    return database.publishJob(req.body.restname, req.body.jobtype, req.body.hourpay, req.body.typepay,
+        req.body.schedule, req.body.contact, req.body.address, req.body.area, req.body.phone).then(results => {
+        console.log("results in createjob in index.js: ", results[0]);
+
+        req.session.jobId = null;
+        res.json({
+            success: true
+        });
+
+    })
+})
+
+
+app.post('/finalizeJob', (req, res) => {
+    return database.publishJob(req.body.restname, req.body.jobtype, req.body.hourpay, req.body.typepay,
         req.body.schedule, req.body.contact, req.body.address, req.body.area, req.body.phone).then(results => {
         console.log("results in createjob in index.js: ", results[0]);
         req.session.jobId = results[0].id;
         res.json({
             success: true
         });
+
     })
-})
+
+    })
+
+
+
 
 app.get('*', function(req, res) {
     res.sendFile(__dirname + '/index.html');
 });
 
-app.listen(8080, function() {
-    console.log("I'm listening.");
-});
+app.listen(process.env.PORT || 8080);
+// app.listen(8080, function() {
+//     console.log("I'm listening.");
+// });
+
 
 // // html
 // <input id="pac-input" type="text"

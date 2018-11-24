@@ -69,8 +69,8 @@ a:link, a:visited {
     background-color: DodgerBlue;
   border: none;
   color: white;
-  padding: 12px 22px;
-  font-size: 56px;
+  padding-right: 20px;
+  font-size: 76px;
   cursor: pointer;
 }
 
@@ -140,14 +140,19 @@ td {
 }
 
 .modal {
-  width:100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.6);
   transform: translate(-50%,-50%);
   position:fixed;
-  background: white;
+  background: DodgerBlue;
   width: 80%;
   height: auto;
   top:50%;
   left:50%;
+  }
+
+  .jobMoment {
+      font-size: 30px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
+      font-style: oblique;
   }
