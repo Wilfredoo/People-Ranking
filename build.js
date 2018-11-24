@@ -17,29 +17,29 @@ if (require.main == module) {
     );
 }
 
-const conf = {
-    entry: ['babel-polyfill', __dirname + '/src/start.js'],
-    output: {
-        path: __dirname,
-        filename: 'bundle.js'
-    },
-    plugins: plugins,
-    module: {
-        loaders: [
-            {
-                test: /\.js$/,
-                loader: 'babel-loader',
-                query: {
-                    presets: [['es2015'], ['react']],
-                    plugins: [
-                        'transform-async-to-generator',
-                        'transform-object-rest-spread'
-                    ]
-                }
-            }
-        ]
-    }
-};
+// const conf = {
+//     entry: ['babel-polyfill', __dirname + '/src/start.js'],
+//     output: {
+//         path: __dirname,
+//         filename: 'bundle.js'
+//     },
+//     plugins: plugins,
+//     module: {
+//         loaders: [
+//             {
+//                 test: /\.js$/,
+//                 loader: 'babel-loader',
+//                 query: {
+//                     presets: [['es2015'], ['react']],
+//                     plugins: [
+//                         'transform-async-to-generator',
+//                         'transform-object-rest-spread'
+//                     ]
+//                 }
+//             }
+//         ]
+//     }
+// };
 
 if (require.main == module) {
     webpack(conf, function(err, info) {
