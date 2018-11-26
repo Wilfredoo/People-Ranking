@@ -22,7 +22,6 @@ app.use(require('body-parser').urlencoded({
     extended: false
 }));
 
-
 app.use(require('body-parser').json())
 
 app.use(cookieSession({
@@ -30,9 +29,7 @@ app.use(cookieSession({
     maxAge: 1000 * 60 * 60 * 24 * 14
 }));
 
-
 app.get("/getJobInfo", function(req, res) {
-    console.log("here is req session in getjobinfo index.js: ", req.session);
     return database.getJobInfo(req.session.jobId).then(data => {
         res.json({
             data
@@ -41,7 +38,6 @@ app.get("/getJobInfo", function(req, res) {
 });
 
 app.get("/getDate", function(req, res) {
-    console.log("this is req session in index.js: ", req.session);
     return database.getDate(req.session.jobId).then(data => {
         res.json({
             data
@@ -50,19 +46,16 @@ app.get("/getDate", function(req, res) {
 });
 
 app.get("/getJobDetails/:id", function(req, res) {
-    console.log("what is the id?", req.params.id);
     return database.getJobInfo(req.params.id).then(data => {
         console.log("here is the data", data.restname);
         res.json({
             data
         });
         req.session.restname = data.restname;
-        console.log("this is the cookie:", req.session.restname);
     });
 });
 
 app.get("/getJobforCorrect", function(req, res) {
-    console.log("req session here in correct: ", req.session);
     return database.getJobInfo(req.session.jobId).then(data => {
         res.json({
             data
@@ -78,34 +71,22 @@ app.get("/getJobs", function(req, res) {
     });
 });
 
+
+
+
 app.post('/publishJob', (req, res) => {
+    console.log("req.body is here in publish job: ", req.body);
     return database.publishJob(req.body.restname, req.body.jobtype, req.body.hourpay, req.body.typepay,
         req.body.schedule, req.body.contact, req.body.address, req.body.area, req.body.phone).then(results => {
-        console.log("results in createjob in index.js: ", results[0]);
-
-        req.session.jobId = null;
+        console.log("results in PUBLISHJOB in index.js: ", results[0]);
+        // req.session.jobId = results[0].id;
         res.json({
             success: true
         });
+        req.session.jobId = null;
 
     })
 })
-
-
-app.post('/finalizeJob', (req, res) => {
-    return database.publishJob(req.body.restname, req.body.jobtype, req.body.hourpay, req.body.typepay,
-        req.body.schedule, req.body.contact, req.body.address, req.body.area, req.body.phone).then(results => {
-        console.log("results in createjob in index.js: ", results[0]);
-        req.session.jobId = results[0].id;
-        res.json({
-            success: true
-        });
-
-    })
-
-    })
-
-
 
 
 app.get('*', function(req, res) {

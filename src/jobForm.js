@@ -47,12 +47,7 @@ export class JobForm extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         // console.log("state is here", this.state);
-        axios.post('/finalizeJob', this.state).then(resp => {
-            // console.log(this);
-            if (resp.data.success) {
-                this.props.history.push('/jobConfirm');
-            }
-        })
+        this.props.history.push('/jobConfirm');
     }
 
 

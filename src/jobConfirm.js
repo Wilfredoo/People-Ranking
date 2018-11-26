@@ -37,7 +37,6 @@ export class JobConfirm extends React.Component {
         })
     }
 
-
     render() {
     if (!this.state.jobData) {
         return null;
