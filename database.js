@@ -1,8 +1,14 @@
-var spicedPg = require('spiced-pg');
-var bcrypt = require('bcryptjs');
-// var secrets = require('./secrets.json');
-var dbUrl = process.env.DATABASE_URL || 'postgres:wilfredo:789@localhost:5432/jobdirecto';
-var db = spicedPg(dbUrl);
+const spicedPg = require('spiced-pg');
+let secrets;
+let dbUrl;
+if (process.env.NODE_ENV === 'production') {
+    secrets = process.env
+    dbUrl = secrets.DATABASE_URL
+} else {
+    secrets = require('./secrets.json')
+    dbUrl = `postgres:${secrets.dbUser}:${secrets.dbPassword}@localhost:5432/jobdirecto`;
+}
+const db = spicedPg(dbUrl);
 
 
 exports.publishJob = function(restname, jobtype, hourpay, typepay, schedule, contact, address, area, phone) {

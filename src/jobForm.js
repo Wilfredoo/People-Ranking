@@ -6,7 +6,7 @@ export class JobForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: '',
+            value: ''
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -14,8 +14,10 @@ export class JobForm extends React.Component {
     }
 
     componentDidMount() {
+
+        console.log("this is state in jobForm: ", this.state);
         axios.get("/getJobforCorrect").then(result => {
-            console.log("here are the results in jobform: ", result);
+            console.log("here are the results in GETJOBFORRECT jobform: ", result);
             this.setState({
                 jobData: result.data,
                 restname: result.data.data.restname,
@@ -26,10 +28,7 @@ export class JobForm extends React.Component {
                 schedule: result.data.data.schedule,
                 address: result.data.data.address,
                 phone: result.data.data.phone,
-                contact: result.data.data.contact,
-
-
-
+                contact: result.data.data.contact
             }, () => {
                 console.log("state in componentDidMount: ", this.state);
             })
@@ -47,10 +46,11 @@ export class JobForm extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         // console.log("state is here", this.state);
-        this.props.history.push('/jobConfirm');
+        axios.post('/finalizeJob', this.state).then(resp => {
+            this.props.history.push('/jobConfirm');
+            if (resp.data.success) {}
+        })
     }
-
-
 
     render() {
         console.log("here is the state: ", this.state.jobData && Object.keys(this.state.jobData).length);
@@ -65,9 +65,7 @@ export class JobForm extends React.Component {
                         : ''} required="required" onChange={this.handleChange}/>}
 
                 <p className="formQuestions">Que posicion busca?</p>
-                <select className="formInputs" type="text" name="jobtype" defaultValue={this.state.jobData && this.state.jobData.data
-                        ? this.state.jobData.data.jobtype
-                        : ''} required="required" onChange={this.handleChange}>
+                <select className="formInputs" type="text" name="jobtype" defaultValue="Lavaplatos" required="required" onChange={this.handleChange}>
                     <option value=""></option>
                     <option onClick={this.hideOtroInput} value="Lavaplatos">Lavaplatos</option>
                     <option value="Cocinero">Cocinero</option>
@@ -78,16 +76,18 @@ export class JobForm extends React.Component {
                     <option value="Pora">Pora</option>
                     <option value="Otro">Otro</option>
                 </select>
-{ (this.state.jobtype === "Otro" )&&
-            <div>    <p className="formQuestions" >Porfavor especifique:</p>
-                <input className="formInputs" type="text" name="jobtype" required="required" onChange={this.handleChange} />
-</div>
-}
+                {
+                    (this.state.jobtype === "Otro") && <div>
+                            <p className="formQuestions">Porfavor especifique:</p>
+                            <input className="formInputs" type="text" name="jobtype" required="required" onChange={this.handleChange}/>
+                        </div>
+                }
                 <p className="formQuestions">Cuanto paga la hora?</p>
 
                 <input className="formInputs" type="text" name="hourpay" defaultValue={this.state.jobData && this.state.jobData.data
                         ? this.state.jobData.data.hourpay
                         : ''} required="required" onChange={this.handleChange}/>
+
 
                 <p className="formQuestions">Paga en cheque o cash?</p>
                 <span >
@@ -96,11 +96,14 @@ export class JobForm extends React.Component {
                 <span>
                     <label onChange={this.handleChange} htmlFor="ambos">
                         Ambos
-                    </label><input className="radio" type="radio" value="ambos" name="typepay" onChange={this.handleChange}/></span>
+                    </label><input className="radio" type="radio" value="ambos" name="typepay" defaultChecked onChange={this.handleChange}/></span>
                 <span>
                     <label onChange={this.handleChange} htmlFor="cheque">
                         Cheque
                     </label><input className="radio" type="radio" value="cheque" name="typepay" onChange={this.handleChange}/></span>
+
+
+
                 <p className="formQuestions">Cual es el horario?</p>
                 <input className="formInputs" type="text" name="schedule" defaultValue={this.state.jobData && this.state.jobData.data
                         ? this.state.jobData.data.schedule

@@ -156,3 +156,8 @@ td {
       align-items: flex-end;
       font-style: oblique;
   }
+
+
+label {
+    font-size: 30px;
+}

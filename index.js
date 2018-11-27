@@ -30,10 +30,9 @@ app.use(cookieSession({
 }));
 
 app.get("/getJobInfo", function(req, res) {
-    return database.getJobInfo(req.session.jobId).then(data => {
-        res.json({
-            data
-        });
+    console.log("req session in getjobinfo index.js: ", req.session);
+    res.json({
+        data: req.session.job
     });
 });
 
@@ -56,10 +55,9 @@ app.get("/getJobDetails/:id", function(req, res) {
 });
 
 app.get("/getJobforCorrect", function(req, res) {
-    return database.getJobInfo(req.session.jobId).then(data => {
-        res.json({
-            data
-        });
+    console.log("req session: ", req.session);
+    res.json({
+        data: req.session.job
     });
 });
 
@@ -72,12 +70,20 @@ app.get("/getJobs", function(req, res) {
 });
 
 
+app.post('/finalizeJob', (req, res) => {
+    console.log("check this req.body in finalizeJob index.js: ", req.body);
+    req.session.job = req.body
+    console.log("req session in finalizejob in index.js: ", req.session);
+    res.json({
+        success: true
+    });
+})
 
 
 app.post('/publishJob', (req, res) => {
-    console.log("req.body is here in publish job: ", req.body);
-    return database.publishJob(req.body.restname, req.body.jobtype, req.body.hourpay, req.body.typepay,
-        req.body.schedule, req.body.contact, req.body.address, req.body.area, req.body.phone).then(results => {
+    console.log("req.body is here in publish job: ", req.body.jobData.data);
+    return database.publishJob(req.body.jobData.data.restname, req.body.jobData.data.jobtype, req.body.jobData.data.hourpay, req.body.jobData.data.typepay,
+        req.body.jobData.data.schedule, req.body.jobData.data.contact, req.body.jobData.data.address, req.body.jobData.data.area, req.body.jobData.data.phone).then(results => {
         console.log("results in PUBLISHJOB in index.js: ", results[0]);
         // req.session.jobId = results[0].id;
         res.json({

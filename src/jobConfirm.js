@@ -13,7 +13,15 @@ export class JobConfirm extends React.Component {
     }
 
     componentDidMount() {
+        console.log("state in compMount jobconfirm: ", this.state);
         axios.get("/getJobInfo").then(result => {
+            console.log("results in compDidMount in jobConfirm: ", result);
+
+            if (result.data.success == false) {
+                return null
+            }
+
+
             this.setState({
                 jobData: result.data
             })
