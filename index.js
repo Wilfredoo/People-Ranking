@@ -53,6 +53,7 @@ app.get("/getJobDetails/:id", function(req, res) {
 });
 
 app.get("/getJobforCorrect", function(req, res) {
+    console.log("req session in jobforcorrrect: ", req.session);
     res.json({
         data: req.session.job
     });
@@ -81,15 +82,12 @@ app.post('/publishJob', (req, res) => {
         req.body.jobData.data.schedule, req.body.jobData.data.contact, req.body.jobData.data.address, req.body.jobData.data.area, req.body.jobData.data.phone).then(() => {
         // req.session.jobId = results[0].id;
         console.log("got back from db");
+        req.session = null;
             res.json({
                 success: true
             });
-            req.session = null;
-            req.body = null;
             console.log("what is job?", req.session.job);
             console.log("body? ", req.body);
-        // res.clearCookie("key");
-        // res.cookie(props , '', {expires: new Date(0)});
 
         })
 })
