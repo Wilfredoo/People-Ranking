@@ -88,7 +88,6 @@ app.post('/publishJob', (req, res) => {
             });
             console.log("what is job?", req.session.job);
             console.log("body? ", req.body);
-
         })
 })
 
