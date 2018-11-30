@@ -44,7 +44,6 @@ a:link, a:visited {
     width: 300px;
     font-size: 30px;
     margin-left: 120px;
-
 }
 
 .busca {
@@ -67,11 +66,11 @@ a:link, a:visited {
 
 .btn {
     background-color: DodgerBlue;
-  border: none;
-  color: white;
-  padding-right: 20px;
-  font-size: 76px;
-  cursor: pointer;
+    border: none;
+    color: white;
+    padding-right: 20px;
+    font-size: 76px;
+    cursor: pointer;
 }
 
 /* job form */
@@ -85,7 +84,7 @@ a:link, a:visited {
     height: 60%;
     margin-bottom: 35px;
     border-style: solid;
-border-width: medium;
+    border-width: medium;
 }
 
 .jobForm {
@@ -94,7 +93,8 @@ border-width: medium;
 }
 
 .radio {
-    width: 3em; height: 3em;
+    width: 3em;
+    height: 3em;
     margin-right: 25px;
     margin-bottom: 30px;
 }
@@ -109,7 +109,6 @@ border-width: medium;
 .jobConfirmPage {
     margin: 40px;
     padding: 20px;
-
 }
 
 .confirmButton {
@@ -140,23 +139,22 @@ td {
 }
 
 .modal {
-  transform: translate(-50%,-50%);
-  position:fixed;
-  background: DodgerBlue;
-  width: 80%;
-  height: auto;
-  top:50%;
-  left:50%;
-  }
+    transform: translate(-50%, -50%);
+    position: fixed;
+    background: DodgerBlue;
+    width: 80%;
+    height: auto;
+    top: 50%;
+    left: 50%;
+}
 
-  .jobMoment {
-      font-size: 30px;
-      display: flex;
-      justify-content: flex-end;
-      align-items: flex-end;
-      font-style: oblique;
-  }
-
+.jobMoment {
+    font-size: 30px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    font-style: oblique;
+}
 
 label {
     font-size: 30px;

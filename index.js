@@ -30,7 +30,6 @@ app.use(cookieSession({
 }));
 
 app.get("/getJobInfo", function(req, res) {
-    console.log("req session in getjobinfo index.js: ", req.session);
     res.json({
         data: req.session.job
     });
@@ -46,7 +45,6 @@ app.get("/getDate", function(req, res) {
 
 app.get("/getJobDetails/:id", function(req, res) {
     return database.getJobInfo(req.params.id).then(data => {
-        console.log("here is the data", data.restname);
         res.json({
             data
         });
@@ -55,7 +53,6 @@ app.get("/getJobDetails/:id", function(req, res) {
 });
 
 app.get("/getJobforCorrect", function(req, res) {
-    console.log("req session: ", req.session);
     res.json({
         data: req.session.job
     });
@@ -71,9 +68,7 @@ app.get("/getJobs", function(req, res) {
 
 
 app.post('/finalizeJob', (req, res) => {
-    console.log("check this req.body in finalizeJob index.js: ", req.body);
     req.session.job = req.body
-    console.log("req session in finalizejob in index.js: ", req.session);
     res.json({
         success: true
     });
@@ -81,17 +76,22 @@ app.post('/finalizeJob', (req, res) => {
 
 
 app.post('/publishJob', (req, res) => {
-    console.log("req.body is here in publish job: ", req.body.jobData.data);
+    console.log("req.session is here in publish jobbb: ", req.session.job.jobData);
     return database.publishJob(req.body.jobData.data.restname, req.body.jobData.data.jobtype, req.body.jobData.data.hourpay, req.body.jobData.data.typepay,
-        req.body.jobData.data.schedule, req.body.jobData.data.contact, req.body.jobData.data.address, req.body.jobData.data.area, req.body.jobData.data.phone).then(results => {
-        console.log("results in PUBLISHJOB in index.js: ", results[0]);
+        req.body.jobData.data.schedule, req.body.jobData.data.contact, req.body.jobData.data.address, req.body.jobData.data.area, req.body.jobData.data.phone).then(() => {
         // req.session.jobId = results[0].id;
-        res.json({
-            success: true
-        });
-        req.session.jobId = null;
+        console.log("got back from db");
+            res.json({
+                success: true
+            });
+            req.session = null;
+            req.body = null;
+            console.log("what is job?", req.session.job);
+            console.log("body? ", req.body);
+        // res.clearCookie("key");
+        // res.cookie(props , '', {expires: new Date(0)});
 
-    })
+        })
 })
 
 

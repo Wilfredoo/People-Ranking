@@ -6,18 +6,18 @@ export class JobForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: ''
+            value: '',
+            whatever: ''
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.submision = this.submision.bind(this);
 
     }
 
     componentDidMount() {
 
-        console.log("this is state in jobForm: ", this.state);
         axios.get("/getJobforCorrect").then(result => {
-            console.log("here are the results in GETJOBFORRECT jobform: ", result);
             this.setState({
                 jobData: result.data,
                 restname: result.data.data.restname,
@@ -32,7 +32,15 @@ export class JobForm extends React.Component {
             }, () => {
                 console.log("state in componentDidMount: ", this.state);
             })
+
         });
+
+    }
+
+    submision() {
+        if (this.state.jobtype === "Otro") {
+            this.setState({jobtype: this.state.whatever})
+        }
     }
 
     handleChange(event) {
@@ -45,7 +53,6 @@ export class JobForm extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        // console.log("state is here", this.state);
         axios.post('/finalizeJob', this.state).then(resp => {
             this.props.history.push('/jobConfirm');
             if (resp.data.success) {}
@@ -53,7 +60,7 @@ export class JobForm extends React.Component {
     }
 
     render() {
-        console.log("here is the state: ", this.state.jobData && Object.keys(this.state.jobData).length);
+
         return (<div className="jobForm">
             < form onSubmit={this.handleSubmit
 }>
@@ -65,21 +72,23 @@ export class JobForm extends React.Component {
                         : ''} required="required" onChange={this.handleChange}/>}
 
                 <p className="formQuestions">Que posicion busca?</p>
-                <select className="formInputs" type="text" name="jobtype" defaultValue="Lavaplatos" required="required" onChange={this.handleChange}>
+                <select className="formInputs" type="text" name="jobtype" defaultValue={this.state.jobData && this.state.jobData.data
+                        ? this.state.jobData.data.jobtype
+                        : ''} required="required" onChange={this.handleChange}>
                     <option value=""></option>
-                    <option onClick={this.hideOtroInput} value="Lavaplatos">Lavaplatos</option>
-                    <option value="Cocinero">Cocinero</option>
-                    <option value="Line Cook">Line Cook</option>
-                    <option value="Preparador">Preparador</option>
-                    <option value="Mesero">Mesero/a</option>
-                    <option value="Porter">Porter</option>
-                    <option value="Pora">Pora</option>
+                    <option selected={this.state.jobData && this.state.jobData.data && this.state.jobData.data.jobtype == 'Lavaplatos'} onClick={this.hideOtroInput} value="Lavaplatos">Lavaplatos</option>
+                    <option selected={this.state.jobData && this.state.jobData.data && this.state.jobData.data.jobtype == 'Cocinero'} value="Cocinero">Cocinero</option>
+                    <option selected={this.state.jobData && this.state.jobData.data && this.state.jobData.data.jobtype == 'Line Cook'} value="Line Cook">Line Cook</option>
+                    <option selected={this.state.jobData && this.state.jobData.data && this.state.jobData.data.jobtype == 'Preparador'} value="Preparador">Preparador</option>
+                    <option selected={this.state.jobData && this.state.jobData.data && this.state.jobData.data.jobtype == 'Mesero o Mesera'} value="Mesero o Mesera">Mesero o Mesera</option>
+                    <option selected={this.state.jobData && this.state.jobData.data && this.state.jobData.data.jobtype == 'Porter'} value="Porter">Porter</option>
+                    <option selected={this.state.jobData && this.state.jobData.data && this.state.jobData.data.jobtype == 'Pora'} value="Pora">Pora</option>
                     <option value="Otro">Otro</option>
                 </select>
                 {
                     (this.state.jobtype === "Otro") && <div>
                             <p className="formQuestions">Porfavor especifique:</p>
-                            <input className="formInputs" type="text" name="jobtype" required="required" onChange={this.handleChange}/>
+                            <input className="formInputs" type="text" name="whatever" required="required" onChange={this.handleChange}/>
                         </div>
                 }
                 <p className="formQuestions">Cuanto paga la hora?</p>
@@ -89,53 +98,85 @@ export class JobForm extends React.Component {
                         : ''} required="required" onChange={this.handleChange}/>
 
 
+
+
+
+
+
                 <p className="formQuestions">Paga en cheque o cash?</p>
-                <span >
-                    <label htmlFor="cash">Cash
-                    </label><input className="radio" type="radio" name="typepay" value="cash" required="required" onChange={this.handleChange}/></span>
-                <span>
-                    <label onChange={this.handleChange} htmlFor="ambos">
-                        Ambos
-                    </label><input className="radio" type="radio" value="ambos" name="typepay" defaultChecked onChange={this.handleChange}/></span>
-                <span>
-                    <label onChange={this.handleChange} htmlFor="cheque">
-                        Cheque
-                    </label><input className="radio" type="radio" value="cheque" name="typepay" onChange={this.handleChange}/></span>
+                {
+                    this.state.jobData && this.state.jobData.data && this.state.jobData.data.typepay === "cash" &&
+                    <label htmlFor="cash">Cash<span ><input className="radio" type="radio" name="typepay" value="cash" defaultChecked="defaultChecked" required="required" onChange={this.handleChange}/></span>
+                    Cheque<span ><input className="radio" type="radio" name="typepay" value="cheque"  required="required" onChange={this.handleChange}/></span>
+                    Cash y Cheque<span ><input className="radio" type="radio" name="typepay" value="Cash y Cheque" required="required" onChange={this.handleChange}/></span>
+                    </label>
+    } {
+                this.state.jobData && this.state.jobData.data && this.state.jobData.data.typepay !== "cash" || !this.state.jobData && <label htmlFor="cash">Cash
+                <span ><input className="radio" type="radio" name="typepay" value="cash" required="required" onChange={this.handleChange}/></span>
+            </label>
+    }
+
+    {
+        this.state.jobData && this.state.jobData.data && this.state.jobData.data.typepay === "cheque" &&
+        <label htmlFor="cash">Cash<span ><input className="radio" type="radio" name="typepay" value="cash"  required="required" onChange={this.handleChange}/></span>
+        Cheque<span ><input className="radio" type="radio" name="typepay" value="cheque"  required="required"  defaultChecked="defaultChecked" onChange={this.handleChange}/></span>
+        Cash y Cheque<span ><input className="radio" type="radio" name="typepay" value="Cash y Cheque" required="required" onChange={this.handleChange}/></span>
+        </label>
+    } {
+        this.state.jobData && this.state.jobData.data && this.state.jobData.data.typepay !== "cheque" || !this.state.jobData && <label htmlFor="cheqye">Cheque
+                <span ><input className="radio" type="radio" name="typepay" value="cheque" required="required" onChange={this.handleChange}/></span>
+            </label>
+    } {
+        this.state.jobData && this.state.jobData.data && this.state.jobData.data.typepay === "Cash y Cheque" &&
+        <label htmlFor="cash">Cash<span ><input className="radio" type="radio" name="typepay" value="cash"  required="required" onChange={this.handleChange}/></span>
+        Cheque<span ><input className="radio" type="radio" name="typepay" value="cheque"  required="required" onChange={this.handleChange}/></span>
+    Cash y Cheque<span ><input className="radio" type="radio" name="typepay" value="Cash y Cheque" required="required" defaultChecked="defaultChecked" onChange={this.handleChange}/></span>
+        </label>
+    } {
+        this.state.jobData && this.state.jobData.data && this.state.jobData.data.typepay !== "Cash y Cheque" || !this.state.jobData &&  <label htmlFor="Cash y Cheque">Cash y Cheque
+                <span ><input className="radio" type="radio" name="typepay" value="Cash y Cheque" required="required" onChange={this.handleChange}/></span>
+            </label>
+    }
 
 
 
-                <p className="formQuestions">Cual es el horario?</p>
-                <input className="formInputs" type="text" name="schedule" defaultValue={this.state.jobData && this.state.jobData.data
-                        ? this.state.jobData.data.schedule
-                        : ''} required="required" onChange={this.handleChange}/>
-                <p className="formQuestions">Direccion del restaurante:</p>
-                <input className="formInputs" type="text" name="address" defaultValue={this.state.jobData && this.state.jobData.data
-                        ? this.state.jobData.data.address
-                        : ''} required="required" onChange={this.handleChange}/>
-                <p className="formQuestions">En que area se encuentra?</p>
-                <select className="formInputs" type="text" name="area" defaultValue={this.state.jobData && this.state.jobData.data
-                        ? this.state.jobData.data.area
-                        : ''} required="required" onChange={this.handleChange}>
-                    <option value=""></option>
-                    <option value="Manhattan">Manhattan</option>
-                    <option value="Brooklyn">Brooklyn</option>
-                    <option value="El Bronx">El Bronx</option>
-                    <option value="Queens">Queens</option>
-                    <option value="Staten Island">Staten Island</option>
-                </select>
-                <p className="formQuestions">Numero de celular (opcional)?</p>
-                <input className="formInputs" type="number" name="phone" defaultValue={this.state.jobData && this.state.jobData.data
-                        ? this.state.jobData.data.phone
-                        : ''} required="required" onChange={this.handleChange}/>
-                <p className="formQuestions">Por quien preguntar?</p>
+    < p className = "formQuestions" > Cual es el horario
+        ? </p>
+    <input className="formInputs" type="text" name="schedule" defaultValue={this.state.jobData && this.state.jobData.data
+            ? this.state.jobData.data.schedule
+            : ''} required="required" onChange={this.handleChange}/>
+
+    <p className="formQuestions">Direccion del restaurante
+        : </p>
+    <input className="formInputs" type="text" name="address" defaultValue={this.state.jobData && this.state.jobData.data
+            ? this.state.jobData.data.address
+            : ''} required="required" onChange={this.handleChange}/>
+    <p className="formQuestions">En que area se encuentra
+            ? </p>
+        <select className="formInputs" type="text" name="area" defaultValue={this.state.jobData && this.state.jobData.data
+                ? this.state.jobData.data.area
+                : ''} required="required" onChange={this.handleChange}>
+            <option value=""></option>
+            <option selected={this.state.jobData && this.state.jobData.data && this.state.jobData.data.area == 'Manhattan'} value="Manhattan">Manhattan</option>
+            <option selected={this.state.jobData && this.state.jobData.data && this.state.jobData.data.area == 'Brooklyn'} value="Brooklyn">Brooklyn</option>
+            <option selected={this.state.jobData && this.state.jobData.data && this.state.jobData.data.area == 'El Bronx'} value="El Bronx">El Bronx</option>
+            <option selected={this.state.jobData && this.state.jobData.data && this.state.jobData.data.area == 'Queens'} value="Queens">Queens</option>
+            <option selected={this.state.jobData && this.state.jobData.data && this.state.jobData.data.area == 'Staten Island'} value="Staten Island">Staten Island</option>
+        </select>
+        <p className="formQuestions">Numero de celular(opcional)
+                ? </p>
+            <input className="formInputs" type="number" name="phone" defaultValue={this.state.jobData && this.state.jobData.data
+                    ? this.state.jobData.data.phone
+                    : ''} required="required" onChange={this.handleChange}/>
+            <p className="formQuestions">Por quien preguntar
+                    ? </p>
                 <input className="formInputs" type="text" name="contact" defaultValue={this.state.jobData && this.state.jobData.data
                         ? this.state.jobData.data.contact
                         : ''} required="required" onChange={this.handleChange}/>
 
-                <input id="listo" type="submit" value="Listo"/>
+                <input id="listo" onClick={this.submision} type="submit" value="Listo"/>
 
             </form>
-        </div>
-        );
+        </div>);
 }
 }

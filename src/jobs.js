@@ -19,12 +19,10 @@ export class Jobs extends React.Component {
 
     componentDidMount() {
         axios.get("/getJobs").then(result => {
-            console.log("check out this data", result);
             this.setState({jobData: result.data});
         });
 
         axios.get("/getDate").then(result => {
-            console.log("result in jobs.js axios /getDate: ", result.data);
             this.setState({dateData: result.data});
         });
     }
@@ -48,13 +46,11 @@ export class Jobs extends React.Component {
             selectedJobId: event
         },
      () => {
-        console.log("state is handleclick in jobs", this.state);
     })
     }
 
     hideModal() {
         this.setState({show: false}, () => {
-            console.log("state now", this.state);
         });
     }
 

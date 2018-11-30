@@ -13,12 +13,10 @@ export class JobConfirm extends React.Component {
     }
 
     componentDidMount() {
-        console.log("state in compMount jobconfirm: ", this.state);
         axios.get("/getJobInfo").then(result => {
-            console.log("results in compDidMount in jobConfirm: ", result);
 
             if (result.data.success == false) {
-                return null
+                return null;
             }
 
 
@@ -35,11 +33,18 @@ export class JobConfirm extends React.Component {
     }
 
     handleSubmit(event) {
-        console.log("state in jobconfirm: ", this.state);
         event.preventDefault();
         axios.post('/publishJob', this.state).then(resp => {
             if (resp.data.success) {
+                console.log("state currently: ", this.state);
+                this.setState({
+                    jobData: ''
+                })
+                console.log("state currently: ", this.state);
                 this.props.history.push('/');
+                // this.setState({
+                //
+                // })
                 // location.replace('/')
             }
         })
