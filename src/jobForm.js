@@ -53,6 +53,7 @@ export class JobForm extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
+        console.log("this is my state right before I post: ", this.state);
         axios.post('/finalizeJob', this.state).then(resp => {
             this.props.history.push('/jobConfirm');
             if (resp.data.success) {}
@@ -93,9 +94,9 @@ export class JobForm extends React.Component {
                 }
                 <p className="formQuestions">Cuanto paga la hora?</p>
 
-                <input className="formInputs" type="text" name="hourpay" defaultValue={this.state.jobData && this.state.jobData.data
+                <input className="formInputs" type="number" name="hourpay" defaultValue={this.state.jobData && this.state.jobData.data
                         ? this.state.jobData.data.hourpay
-                        : ''} required="required" onChange={this.handleChange}/>
+                        : ''}  onChange={this.handleChange}/>
 
 
 
@@ -167,7 +168,7 @@ export class JobForm extends React.Component {
                 ? </p>
             <input className="formInputs" type="number" name="phone" defaultValue={this.state.jobData && this.state.jobData.data
                     ? this.state.jobData.data.phone
-                    : ''} required="required" onChange={this.handleChange}/>
+                    : ''}  onChange={this.handleChange}/>
             <p className="formQuestions">Por quien preguntar
                     ? </p>
                 <input className="formInputs" type="text" name="contact" defaultValue={this.state.jobData && this.state.jobData.data

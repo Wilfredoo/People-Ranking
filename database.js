@@ -57,7 +57,7 @@ exports.getJobforCorrect = function(id) {
         })
 }
 
-exports.getJobs = function() {
+exports.getJobs = function() {    
     return db.query(`SELECT *
         FROM jobs
         ORDER BY id DESC
