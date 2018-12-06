@@ -94,7 +94,7 @@ export class JobForm extends React.Component {
                 }
                 <p className="formQuestions">Cuanto paga la hora?</p>
 
-                <input className="formInputs" type="number" name="hourpay" defaultValue={this.state.jobData && this.state.jobData.data
+                <input className="formInputs" type="text" name="hourpay" defaultValue={this.state.jobData && this.state.jobData.data
                         ? this.state.jobData.data.hourpay
                         : ''}  onChange={this.handleChange}/>
 
@@ -166,7 +166,7 @@ export class JobForm extends React.Component {
         </select>
         <p className="formQuestions">Numero de celular(opcional)
                 ? </p>
-            <input className="formInputs" type="number" name="phone" defaultValue={this.state.jobData && this.state.jobData.data
+            <input className="formInputs" type="text" name="phone" defaultValue={this.state.jobData && this.state.jobData.data
                     ? this.state.jobData.data.phone
                     : ''}  onChange={this.handleChange}/>
             <p className="formQuestions">Por quien preguntar
