@@ -92,7 +92,7 @@ export class JobForm extends React.Component {
                             <input className="formInputs" type="text" name="whatever" required="required" onChange={this.handleChange}/>
                         </div>
                 }
-                <p className="formQuestions">Cuanto paga la hora?</p>
+                <p className="formQuestions">Cuanto paga la ora?</p>
 
                 <input className="formInputs" type="text" name="hourpay" defaultValue={this.state.jobData && this.state.jobData.data
                         ? this.state.jobData.data.hourpay
