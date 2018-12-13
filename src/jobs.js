@@ -60,20 +60,16 @@ export class Jobs extends React.Component {
         }
         return (
             <div>
-            <h2>Trabajos en NYC</h2>
+            <h1>Trabajos en NYC</h1>
                 { this.state.show && <Modal id={this.state.selectedJobId} close={this.hideModal}/>}
             <div className="filtersbutton">
                 <div className="filters">
                     <form onSubmit={this.handleSubmit}>
                         <select className="filter" type="text" name="jobtype" onChange={this.handleChange}>
                             <option value="">Puesto</option>
-                            <option value="Line Cook">Line Cook</option>
                             <option value="Lavaplatos">Lavaplatos</option>
                             <option value="Cocinero">Cocinero</option>
-                            <option value="Pora">Pora</option>
-                            <option value="Mesero">Mesero</option>
-                            <option value="Porter">Porter</option>
-                            <option value="Cajero">Porter</option>
+                            <option value="Deliman">Deliman</option>
                             <option value="Otro">Otro</option>
                         </select>
                         <select className="filter" type="text" name="area" onChange={this.handleChange}>
