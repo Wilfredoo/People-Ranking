@@ -60,6 +60,7 @@ export class Jobs extends React.Component {
         }
         return (
             <div>
+            <h2>Trabajos en NYC</h2>
                 { this.state.show && <Modal id={this.state.selectedJobId} close={this.hideModal}/>}
             <div className="filtersbutton">
                 <div className="filters">
@@ -86,7 +87,7 @@ export class Jobs extends React.Component {
                     </form>
                 </div>
 
-                <Link to="/jobForm"><input id="createJob" type="submit" value="Crear puesto"/></Link>
+                <Link to="/jobForm"><input id="createJob" type="submit" value="Publicar Oferta"/></Link>
             </div>
 
             <div className="allJobs">

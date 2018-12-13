@@ -66,7 +66,7 @@ export class JobForm extends React.Component {
             < form onSubmit={this.handleSubmit
 }>
                 <h1>Crear Nuevo Puesto</h1>
-                <p className="formQuestions">Como se llama su restaurante?</p>
+                <p className="formQuestions">Como se llama su local?</p>
 
                 <input className="formInputs" type="text" name="restname" defaultValue={this.state.jobData && this.state.jobData.data
                         ? this.state.jobData.data.restname
@@ -79,16 +79,12 @@ export class JobForm extends React.Component {
                     <option value=""></option>
                     <option selected={this.state.jobData && this.state.jobData.data && this.state.jobData.data.jobtype == 'Lavaplatos'} onClick={this.hideOtroInput} value="Lavaplatos">Lavaplatos</option>
                     <option selected={this.state.jobData && this.state.jobData.data && this.state.jobData.data.jobtype == 'Cocinero'} value="Cocinero">Cocinero</option>
-                    <option selected={this.state.jobData && this.state.jobData.data && this.state.jobData.data.jobtype == 'Line Cook'} value="Line Cook">Line Cook</option>
-                    <option selected={this.state.jobData && this.state.jobData.data && this.state.jobData.data.jobtype == 'Preparador'} value="Preparador">Preparador</option>
-                    <option selected={this.state.jobData && this.state.jobData.data && this.state.jobData.data.jobtype == 'Mesero o Mesera'} value="Mesero o Mesera">Mesero o Mesera</option>
-                    <option selected={this.state.jobData && this.state.jobData.data && this.state.jobData.data.jobtype == 'Porter'} value="Porter">Porter</option>
-                    <option selected={this.state.jobData && this.state.jobData.data && this.state.jobData.data.jobtype == 'Pora'} value="Pora">Pora</option>
+                    <option selected={this.state.jobData && this.state.jobData.data && this.state.jobData.data.jobtype == 'Deliman'} value="Deliman">Deliman</option>
                     <option value="Otro">Otro</option>
                 </select>
                 {
                     (this.state.jobtype === "Otro") && <div>
-                            <p className="formQuestions">Porfavor especifique:</p>
+                            <p className="formQuestions">Porfavor especifique que busca:</p>
                             <input className="formInputs" type="text" name="whatever" required="required" onChange={this.handleChange}/>
                         </div>
                 }
@@ -145,7 +141,7 @@ export class JobForm extends React.Component {
         ? </p>
     <input className="formInputs" type="text" name="schedule" defaultValue={this.state.jobData && this.state.jobData.data
             ? this.state.jobData.data.schedule
-            : ''} required="required" onChange={this.handleChange}/>
+            : ''} onChange={this.handleChange}/>
 
     <p className="formQuestions">Direccion del restaurante
         : </p>
