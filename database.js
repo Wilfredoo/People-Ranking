@@ -6,7 +6,7 @@ if (process.env.NODE_ENV === 'production') {
     dbUrl = secrets.DATABASE_URL
 } else {
     secrets = require('./secrets.json')
-    dbUrl = `postgres:${secrets.dbUser}:${secrets.dbPassword}@localhost:5432/jobdirecto`;
+    dbUrl = `postgres:${secrets.dbUser}:${secrets.dbPassword}@localhost:5433/jobdirecto`;
 }
 const db = spicedPg(dbUrl);
 
@@ -57,7 +57,7 @@ exports.getJobforCorrect = function(id) {
         })
 }
 
-exports.getJobs = function() {    
+exports.getJobs = function() {
     return db.query(`SELECT *
         FROM jobs
         ORDER BY id DESC
