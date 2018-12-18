@@ -99,7 +99,7 @@ export class Jobs extends React.Component {
 
                                     <p>Horario: {data.schedule}</p>
                                     <p>Area: {data.area}</p>
-                                    <Moment fromNow>{data.created_at}</Moment>
+                                    <div className="jobMoment"><Moment fromNow>{data.created_at}</Moment></div>
                                 </div>
                             )
                         }
@@ -113,7 +113,7 @@ export class Jobs extends React.Component {
                                 <h3>{data.restname}
                                     <span className="busca"> busca </span>
                                     {data.jobtype}</h3>
-                                <p>Salario: {data.hourpay}$ la hora</p>
+                                <p>Horario: {data.schedule}</p>
                                 <p>Area: {data.area}</p>
                                 <div className="jobMoment"><Moment fromNow>{data.created_at}</Moment></div>
                             </div>
