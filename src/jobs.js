@@ -61,6 +61,7 @@ export class Jobs extends React.Component {
         return (
             <div>
             <h1>JobDirecto - Trabajos en NYC</h1>
+
                 { this.state.show && <Modal id={this.state.selectedJobId} close={this.hideModal}/>}
             <div className="filtersbutton">
                 <div className="filters">
@@ -69,6 +70,11 @@ export class Jobs extends React.Component {
                             <option value="">Puesto</option>
                             <option value="Lavaplatos">Lavaplatos</option>
                             <option value="Cocinero">Cocinero</option>
+                            <option value="Line Cook">Line Cook</option>
+                            <option value="Busboy">Busboy</option>
+                            <option value="Delivery Boy">Delivery Boy</option>
+
+
                             <option value="Deliman">Deliman</option>
                             <option value="Otro">Otro</option>
                         </select>
@@ -97,7 +103,6 @@ export class Jobs extends React.Component {
                                         <span className="busca"> busca </span>
                                         {data.jobtype}</h3>
 
-                                    <p>Horario: {data.schedule}</p>
                                     <p>Area: {data.area}</p>
                                     <div className="jobMoment"><Moment fromNow>{data.created_at}</Moment></div>
                                 </div>
@@ -113,7 +118,6 @@ export class Jobs extends React.Component {
                                 <h3>{data.restname}
                                     <span className="busca"> busca </span>
                                     {data.jobtype}</h3>
-                                <p>Horario: {data.schedule}</p>
                                 <p>Area: {data.area}</p>
                                 <div className="jobMoment"><Moment fromNow>{data.created_at}</Moment></div>
                             </div>

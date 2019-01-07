@@ -143,7 +143,7 @@ export class JobForm extends React.Component {
             ? this.state.jobData.data.schedule
             : ''} onChange={this.handleChange}/>
 
-    <p className="formQuestions">Direccion del restaurante
+    <p className="formQuestions">Direccion del local
         : </p>
     <input className="formInputs" type="text" name="address" defaultValue={this.state.jobData && this.state.jobData.data
             ? this.state.jobData.data.address
