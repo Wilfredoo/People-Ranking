@@ -73,8 +73,6 @@ export class Jobs extends React.Component {
                             <option value="Line Cook">Line Cook</option>
                             <option value="Busboy">Busboy</option>
                             <option value="Delivery Boy">Delivery Boy</option>
-
-
                             <option value="Deliman">Deliman</option>
                             <option value="Otro">Otro</option>
                         </select>

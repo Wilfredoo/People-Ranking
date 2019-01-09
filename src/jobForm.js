@@ -79,6 +79,10 @@ export class JobForm extends React.Component {
                     <option value=""></option>
                     <option selected={this.state.jobData && this.state.jobData.data && this.state.jobData.data.jobtype == 'Lavaplatos'} onClick={this.hideOtroInput} value="Lavaplatos">Lavaplatos</option>
                     <option selected={this.state.jobData && this.state.jobData.data && this.state.jobData.data.jobtype == 'Cocinero'} value="Cocinero">Cocinero</option>
+                    <option selected={this.state.jobData && this.state.jobData.data && this.state.jobData.data.jobtype == 'Line Cook'} value="Line Cook">Line Cook</option>
+                    <option selected={this.state.jobData && this.state.jobData.data && this.state.jobData.data.jobtype == 'Busboy'} value="Busboy">Busboy</option>
+                    <option selected={this.state.jobData && this.state.jobData.data && this.state.jobData.data.jobtype == 'Delivery Boy'} value="Delivery Boy">Delivery Boy</option>
+
                     <option selected={this.state.jobData && this.state.jobData.data && this.state.jobData.data.jobtype == 'Deliman'} value="Deliman">Deliman</option>
                     <option value="Otro">Otro</option>
                 </select>
