@@ -60,7 +60,7 @@ export class Jobs extends React.Component {
         }
         return (
             <div>
-            <h1>JobDirecto - Trabajos en NYC</h1>
+            <h1>JobDirecto - Trabajos en NYC - Yeah</h1>
 
                 { this.state.show && <Modal id={this.state.selectedJobId} close={this.hideModal}/>}
             <div className="filtersbutton">
