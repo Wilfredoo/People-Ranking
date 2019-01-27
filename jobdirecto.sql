@@ -1,10 +1,10 @@
 DROP TABLE IF EXISTS jobs;
 
-CREATE TABLE jobs(
+CREATE TABLE jobs3(
     id SERIAL PRIMARY KEY,
     restName VARCHAR(300),
     jobType VARCHAR(255),
-    hourPay INT,
+    hourPay VARCHAR(255),
     typePay VARCHAR(255) ,
     schedule VARCHAR(255),
     contact VARCHAR(255) ,

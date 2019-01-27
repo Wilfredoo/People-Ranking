@@ -61,6 +61,7 @@ exports.getJobs = function() {
     return db.query(`SELECT *
         FROM jobs
         ORDER BY id DESC
+        LIMIT 100
         ;`)
         .then(results => {
             return results.rows

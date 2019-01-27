@@ -52,6 +52,10 @@ export default class Modal extends React.Component {
                         <td className="confirmText">{this.state.jobData.data.address}</td>
                     </tr>
                     <tr>
+                        <td className="confirmText">Area:</td>
+                        <td className="confirmText">{this.state.jobData.data.area}</td>
+                    </tr>
+                    <tr>
                         <td className="confirmText">Numero:</td>
                         <td className="confirmText">{this.state.jobData.data.phone}</td>
                     </tr>

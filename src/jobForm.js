@@ -7,7 +7,7 @@ export class JobForm extends React.Component {
         super(props);
         this.state = {
             value: '',
-            whatever: ''
+            otro: ''
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -39,7 +39,7 @@ export class JobForm extends React.Component {
 
     submision() {
         if (this.state.jobtype === "Otro") {
-            this.setState({jobtype: this.state.whatever})
+            this.setState({jobtype: this.state.otro})
         }
     }
 
@@ -66,7 +66,7 @@ export class JobForm extends React.Component {
             < form onSubmit={this.handleSubmit
 }>
                 <h1>Crear Nuevo Puesto</h1>
-                <p className="formQuestions">Como se llama su local?</p>
+                <p className="formQuestions">Como se llama su deli o restaurante?</p>
 
                 <input className="formInputs" type="text" name="restname" defaultValue={this.state.jobData && this.state.jobData.data
                         ? this.state.jobData.data.restname
@@ -82,18 +82,17 @@ export class JobForm extends React.Component {
                     <option selected={this.state.jobData && this.state.jobData.data && this.state.jobData.data.jobtype == 'Line Cook'} value="Line Cook">Line Cook</option>
                     <option selected={this.state.jobData && this.state.jobData.data && this.state.jobData.data.jobtype == 'Busboy'} value="Busboy">Busboy</option>
                     <option selected={this.state.jobData && this.state.jobData.data && this.state.jobData.data.jobtype == 'Delivery Boy'} value="Delivery Boy">Delivery Boy</option>
-
                     <option selected={this.state.jobData && this.state.jobData.data && this.state.jobData.data.jobtype == 'Deliman'} value="Deliman">Deliman</option>
                     <option value="Otro">Otro</option>
                 </select>
                 {
                     (this.state.jobtype === "Otro") && <div>
                             <p className="formQuestions">Porfavor especifique que busca:</p>
-                            <input className="formInputs" type="text" name="whatever" required="required" onChange={this.handleChange}/>
+                            <input className="formInputs" type="text" name="otro" required="required" onChange={this.handleChange}/>
                         </div>
                 }
-                <p className="formQuestions">Cuanto paga la hora?</p>
 
+                <p className="formQuestions">Cuanto paga la hora?</p>
                 <input className="formInputs" type="text" name="hourpay" defaultValue={this.state.jobData && this.state.jobData.data
                         ? this.state.jobData.data.hourpay
                         : ''}  onChange={this.handleChange}/>
