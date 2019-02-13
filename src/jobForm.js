@@ -95,52 +95,52 @@ export class JobForm extends React.Component {
                     </div>
                     }
 
-                    <p className="formQuestions">Cuanto paga la hora?</p>
+                    <p className="formQuestions">Cuanto paga?</p>
                     <input className="formInputs" type="text" name="hourpay"
                     defaultValue={this.state.jobData && this.state.jobData.data
                     ? this.state.jobData.data.hourpay
                     : ''}  onChange={this.handleChange}/>
-                    <p className="formQuestions">Paga en cheque o cash?</p>
 
+                    <p className="formQuestions">Paga en cheque o cash? (opcional)</p>
                     {
                     this.state.jobData && this.state.jobData.data && this.state.jobData.data.typepay === "cash" &&
-                    <label htmlFor="cash">Cash<span ><input className="radio" type="radio" name="typepay" value="cash" defaultChecked="defaultChecked" required="required" onChange={this.handleChange}/></span>
-                    Cheque<span ><input className="radio" type="radio" name="typepay" value="cheque"  required="required" onChange={this.handleChange}/></span>
-                    Cash y Cheque<span ><input className="radio" type="radio" name="typepay" value="Cash y Cheque" required="required" onChange={this.handleChange}/></span>
+                    <label htmlFor="cash">Cash<span ><input className="radio" type="radio" name="typepay" value="cash" defaultChecked="defaultChecked" onChange={this.handleChange}/></span>
+                    Cheque<span ><input className="radio" type="radio" name="typepay" value="cheque"  onChange={this.handleChange}/></span>
+                    Cash y Cheque<span ><input className="radio" type="radio" name="typepay" value="Cash y Cheque" onChange={this.handleChange}/></span>
                     </label>
                     }
 
                     {
                     this.state.jobData && this.state.jobData.data && this.state.jobData.data.typepay !== "cash" || !this.state.jobData && <label htmlFor="cash">Cash
-                    <span ><input className="radio" type="radio" name="typepay" value="cash" required="required" onChange={this.handleChange}/></span>
+                    <span ><input className="radio" type="radio" name="typepay" value="cash" onChange={this.handleChange}/></span>
                     </label>
                     }
 
                     {
                     this.state.jobData && this.state.jobData.data && this.state.jobData.data.typepay === "cheque" &&
-                    <label htmlFor="cash">Cash<span ><input className="radio" type="radio" name="typepay" value="cash"  required="required" onChange={this.handleChange}/></span>
-                    Cheque<span ><input className="radio" type="radio" name="typepay" value="cheque"  required="required"  defaultChecked="defaultChecked" onChange={this.handleChange}/></span>
-                    Cash y Cheque<span ><input className="radio" type="radio" name="typepay" value="Cash y Cheque" required="required" onChange={this.handleChange}/></span>
+                    <label htmlFor="cash">Cash<span ><input className="radio" type="radio" name="typepay" value="cash" onChange={this.handleChange}/></span>
+                    Cheque<span ><input className="radio" type="radio" name="typepay" value="cheque" defaultChecked="defaultChecked" onChange={this.handleChange}/></span>
+                    Cash y Cheque<span ><input className="radio" type="radio" name="typepay" value="Cash y Cheque" onChange={this.handleChange}/></span>
                     </label>
                     }
 
                     {
                     this.state.jobData && this.state.jobData.data && this.state.jobData.data.typepay !== "cheque" || !this.state.jobData && <label htmlFor="cheqye">Cheque
-                    <span ><input className="radio" type="radio" name="typepay" value="cheque" required="required" onChange={this.handleChange}/></span>
+                    <span ><input className="radio" type="radio" name="typepay" value="cheque" onChange={this.handleChange}/></span>
                     </label>
                     }
 
                     {
                     this.state.jobData && this.state.jobData.data && this.state.jobData.data.typepay === "Cash y Cheque" &&
-                    <label htmlFor="cash">Cash<span ><input className="radio" type="radio" name="typepay" value="cash"  required="required" onChange={this.handleChange}/></span>
-                    Cheque<span ><input className="radio" type="radio" name="typepay" value="cheque"  required="required" onChange={this.handleChange}/></span>
-                    Cash y Cheque<span ><input className="radio" type="radio" name="typepay" value="Cash y Cheque" required="required" defaultChecked="defaultChecked" onChange={this.handleChange}/></span>
+                    <label htmlFor="cash">Cash<span ><input className="radio" type="radio" name="typepay" value="cash" onChange={this.handleChange}/></span>
+                    Cheque<span ><input className="radio" type="radio" name="typepay" value="cheque"  onChange={this.handleChange}/></span>
+                    Cash y Cheque<span ><input className="radio" type="radio" name="typepay" value="Cash y Cheque" defaultChecked="defaultChecked" onChange={this.handleChange}/></span>
                     </label>
                     }
 
                     {
                     this.state.jobData && this.state.jobData.data && this.state.jobData.data.typepay !== "Cash y Cheque" || !this.state.jobData &&  <label htmlFor="Cash y Cheque">Cash y Cheque
-                    <span ><input className="radio" type="radio" name="typepay" value="Cash y Cheque" required="required" onChange={this.handleChange}/></span>
+                    <span ><input className="radio" type="radio" name="typepay" value="Cash y Cheque" onChange={this.handleChange}/></span>
                     </label>
                     }
 
@@ -167,7 +167,7 @@ export class JobForm extends React.Component {
                         <option selected={this.state.jobData && this.state.jobData.data && this.state.jobData.data.area == 'Staten Island'} value="Staten Island">Staten Island</option>
                     </select>
 
-                    <p className="formQuestions">Numero de celular(opcional)?</p>
+                    <p className="formQuestions">Numero de celular? (opcional)</p>
                     <input className="formInputs" type="text" name="phone" defaultValue={this.state.jobData && this.state.jobData.data
                     ? this.state.jobData.data.phone
                     : ''}  onChange={this.handleChange}/>
@@ -175,10 +175,9 @@ export class JobForm extends React.Component {
                     <p className="formQuestions">Por quien preguntar?</p>
                     <input className="formInputs" type="text" name="contact" defaultValue={this.state.jobData && this.state.jobData.data
                     ? this.state.jobData.data.contact
-                    : ''} required="required" onChange={this.handleChange}/>
+                    : ''} onChange={this.handleChange}/>
 
                     <input id="listo" onClick={this.submission} type="submit" value="Listo"/>
-
                 </form>
             </div>
         );
