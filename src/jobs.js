@@ -11,7 +11,8 @@ export class Jobs extends React.Component {
         this.state = {
             show: false
         };
-        this.handleChange = this.handleChange.bind(this);
+        this.handleChangeJob = this.handleChangeJob.bind(this);
+        this.handleChangeArea = this.handleChangeArea.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleClick = this.handleClick.bind(this);
         this.hideModal = this.hideModal.bind(this);
@@ -27,12 +28,17 @@ export class Jobs extends React.Component {
         });
     }
 
-    handleChange(event) {
+    handleChangeJob(event) {
         this.setState({
             [event.target.name]: event.target.value,
-            userSelection: event.target.value
-        }, () => {
-            console.log("state in handle change: ", this.state);
+            userSelectionJob: event.target.value
+        })
+    }
+
+    handleChangeArea(event) {
+        this.setState({
+            [event.target.name]: event.target.value,
+            userSelectionArea: event.target.value
         })
     }
 
@@ -62,7 +68,7 @@ export class Jobs extends React.Component {
                 <div className="filtersbutton">
                     <div className="filters">
                         <form onSubmit={this.handleSubmit}>
-                            <select className="filter" type="text" name="jobtype" onChange={this.handleChange}>
+                            <select className="filter" type="text" name="jobtype" onChange={this.handleChangeJob}>
                                 <option value="">Puesto</option>
                                 <option value="Lavaplatos">Lavaplatos</option>
                                 <option value="Cocinero">Cocinero</option>
@@ -72,7 +78,7 @@ export class Jobs extends React.Component {
                                 <option value="Deliman">Deliman</option>
                                 <option value="Otro">Otro</option>
                             </select>
-                            <select className="filter" type="text" name="area" onChange={this.handleChange}>
+                            <select className="filter" type="text" name="area" onChange={this.handleChangeArea}>
                                 <option value="">Area</option>
                                 <option value="Manhattan">Manhattan</option>
                                 <option value="Brooklyn">Brooklyn</option>
@@ -86,11 +92,11 @@ export class Jobs extends React.Component {
                 </div>
 
                 <div className="allJobs">
-                    {
-                        this.state.userSelection && this.state.jobData.data.map(data => {
-                            if (this.state.userSelection === data.jobtype || this.state.userSelection === data.area) {
-                                return (
 
+                    {
+                        this.state.userSelectionJob && !this.state.userSelectionArea && this.state.jobData.data.map(data => {
+                            if (this.state.userSelectionJob === data.jobtype) {
+                                return (
                                     <div onClick={e => this.handleClick(data.id)} className="jobData" key={data.id}>
                                         <h3>{data.restname}
                                             <span className="busca"> busca </span>
@@ -101,11 +107,48 @@ export class Jobs extends React.Component {
                                     </div>
                                 )
                             }
+
                         })
                     }
 
                     {
-                        !this.state.userSelection && this.state.jobData.data.map(data => {
+                        !this.state.userSelectionJob && this.state.userSelectionArea && this.state.jobData.data.map(data => {
+                            if (this.state.userSelectionArea === data.area) {
+                                return (
+                                    <div onClick={e => this.handleClick(data.id)} className="jobData" key={data.id}>
+                                        <h3>{data.restname}
+                                            <span className="busca"> busca </span>
+                                            {data.jobtype}</h3>
+
+                                        <p>Area: {data.area}</p>
+                                        <div className="jobMoment"><Moment fromNow>{data.created_at}</Moment></div>
+                                    </div>
+                                )
+                            }
+
+                        })
+                    }
+
+                    {
+                        this.state.userSelectionJob && this.state.userSelectionArea && this.state.jobData.data.map(data => {
+                            if (this.state.userSelectionJob === data.jobtype && this.state.userSelectionArea === data.area) {
+                                return (
+                                    <div onClick={e => this.handleClick(data.id)} className="jobData" key={data.id}>
+                                        <h3>{data.restname}
+                                            <span className="busca"> busca </span>
+                                            {data.jobtype}</h3>
+
+                                        <p>Area: {data.area}</p>
+                                        <div className="jobMoment"><Moment fromNow>{data.created_at}</Moment></div>
+                                    </div>
+                                )
+                            }
+
+                        })
+                    }
+
+                    {
+                        !this.state.userSelectionJob && !this.state.userSelectionArea && this.state.jobData.data.map(data => {
                             return (
                                 <div onClick={e => this.handleClick(data.id)} className="jobData" key={data.id}>
                                     <h3>{data.restname}

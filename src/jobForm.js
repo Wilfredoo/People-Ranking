@@ -70,7 +70,7 @@ export class JobForm extends React.Component {
                     <input className="formInputs" type="text" name="restname"
                     defaultValue={this.state.jobData && this.state.jobData.data
                     ? this.state.jobData.data.restname
-                    : ''} required="required" onChange={this.handleChange}/>}
+                    : ''} required="required" onChange={this.handleChange}/>
 
                     <p className="formQuestions">Que posicion busca?</p>
                     <select className="formInputs" type="text" name="jobtype"
@@ -90,8 +90,8 @@ export class JobForm extends React.Component {
                     {
                     (this.state.jobtype === "Otro") &&
                     <div>
-                        <p className="formQuestions">Porfavor especifique que busca:</p>
-                        <input className="formInputs" type="text" name="otro" required="required" onChange={this.handleChange}/>
+                        <p className="formQuestions" style={{color:"blue"}}><b>Porfavor especifique que busca:</b></p>
+                        <input autoFocus className="formInputs" type="text" name="otro" required="required" onChange={this.handleChange} autofocus="true"/>
                     </div>
                     }
 
@@ -101,7 +101,7 @@ export class JobForm extends React.Component {
                     ? this.state.jobData.data.hourpay
                     : ''}  onChange={this.handleChange}/>
 
-                    <p className="formQuestions">Paga en cheque o cash? (opcional)</p>
+                    <p className="formQuestions">Paga en cheque o cash?</p>
                     {
                     this.state.jobData && this.state.jobData.data && this.state.jobData.data.typepay === "cash" &&
                     <label htmlFor="cash">Cash<span ><input className="radio" type="radio" name="typepay" value="cash" defaultChecked="defaultChecked" onChange={this.handleChange}/></span>
@@ -125,7 +125,7 @@ export class JobForm extends React.Component {
                     }
 
                     {
-                    this.state.jobData && this.state.jobData.data && this.state.jobData.data.typepay !== "cheque" || !this.state.jobData && <label htmlFor="cheqye">Cheque
+                    this.state.jobData && this.state.jobData.data && this.state.jobData.data.typepay !== "cheque" || !this.state.jobData && <label htmlFor="cheque">Cheque
                     <span ><input className="radio" type="radio" name="typepay" value="cheque" onChange={this.handleChange}/></span>
                     </label>
                     }
