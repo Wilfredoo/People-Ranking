@@ -22,11 +22,14 @@ export class Jobs extends React.Component {
         axios.get("/getJobs").then(result => {
             for (var i = 0; i < result.data.data.length; i++) {
                 if(result.data.data[i].jobtype !== "Otro") {
+                    result.data.data[i].otro_job = false;
                     this.setState({jobData: result.data});
                 } else if (result.data.data[i].jobtype === "Otro") {
-                    result.data.data[i].jobtype = result.data.data[i].otro_desc
+                    result.data.data[i].jobtype = result.data.data[i].otro_desc;
+                    result.data.data[i].otro_job = true;
                     this.setState({jobData: result.data});
                 }
+                console.log("state:", this.state.jobData);
             }
         });
 
@@ -40,6 +43,7 @@ export class Jobs extends React.Component {
             [event.target.name]: event.target.value,
             userSelectionJob: event.target.value
         })
+
     }
 
     handleChangeArea(event) {
@@ -102,7 +106,25 @@ export class Jobs extends React.Component {
 
                     {
                         this.state.userSelectionJob && !this.state.userSelectionArea && this.state.jobData.data.map(data => {
-                            if (this.state.userSelectionJob === data.jobtype) {
+                            if (this.state.userSelectionJob === data.jobtype && !data.otro_job) {
+                                return (
+                                    <div onClick={e => this.handleClick(data.id)} className="jobData" key={data.id}>
+                                        <h3>{data.restname}
+                                            <span className="busca"> busca </span>
+                                            {data.jobtype}</h3>
+
+                                        <p>Area: {data.area}</p>
+                                        <div className="jobMoment"><Moment fromNow>{data.created_at}</Moment></div>
+                                    </div>
+                                )
+                            }
+
+                        })
+                    }
+
+                    {
+                        this.state.userSelectionJob && !this.state.userSelectionArea && this.state.jobData.data.map(data => {
+                            if (this.state.userSelectionJob === "Otro" && data.otro_job) {
                                 return (
                                     <div onClick={e => this.handleClick(data.id)} className="jobData" key={data.id}>
                                         <h3>{data.restname}
@@ -139,6 +161,24 @@ export class Jobs extends React.Component {
                     {
                         this.state.userSelectionJob && this.state.userSelectionArea && this.state.jobData.data.map(data => {
                             if (this.state.userSelectionJob === data.jobtype && this.state.userSelectionArea === data.area) {
+                                return (
+                                    <div onClick={e => this.handleClick(data.id)} className="jobData" key={data.id}>
+                                        <h3>{data.restname}
+                                            <span className="busca"> busca </span>
+                                            {data.jobtype}</h3>
+
+                                        <p>Area: {data.area}</p>
+                                        <div className="jobMoment"><Moment fromNow>{data.created_at}</Moment></div>
+                                    </div>
+                                )
+                            }
+
+                        })
+                    }
+
+                    {
+                        this.state.userSelectionJob && this.state.userSelectionArea && this.state.jobData.data.map(data => {
+                            if (this.state.userSelectionJob === "Otro" && data.otro_job && this.state.userSelectionArea === data.area) {
                                 return (
                                     <div onClick={e => this.handleClick(data.id)} className="jobData" key={data.id}>
                                         <h3>{data.restname}
