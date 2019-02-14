@@ -20,7 +20,14 @@ export class Jobs extends React.Component {
 
     componentDidMount() {
         axios.get("/getJobs").then(result => {
-            this.setState({jobData: result.data});
+            for (var i = 0; i < result.data.data.length; i++) {
+                if(result.data.data[i].jobtype !== "Otro") {
+                    this.setState({jobData: result.data});
+                } else if (result.data.data[i].jobtype === "Otro") {
+                    result.data.data[i].jobtype = result.data.data[i].otro_desc
+                    this.setState({jobData: result.data});
+                }
+            }
         });
 
         axios.get("/getDate").then(result => {
@@ -63,7 +70,7 @@ export class Jobs extends React.Component {
         }
         return (
             <div>
-                <h1>JobDirecto - Trabajos en NYC - Yeah</h1>
+                <h1>JobDirecto - Trabajos en NYC</h1>
                 { this.state.show && <Modal id={this.state.selectedJobId} close={this.hideModal}/>}
                 <div className="filtersbutton">
                     <div className="filters">

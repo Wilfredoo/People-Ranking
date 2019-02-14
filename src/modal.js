@@ -30,10 +30,18 @@ export default class Modal extends React.Component {
                                 <i class="fa fa-close"></i>
                             </button>
                         </tr>
+                        { this.state.jobData.data.jobtype !== "Otro" &&
                         <tr>
                             <td className="confirmText">Puesto:</td>
                             <td className="confirmText">{this.state.jobData.data.jobtype}</td>
                         </tr>
+                        }
+                        { this.state.jobData.data.jobtype === "Otro" &&
+                        <tr>
+                            <td className="confirmText">Puesto:</td>
+                            <td className="confirmText">{this.state.jobData.data.otro_desc}</td>
+                        </tr>
+                        }
                         <tr>
                             <td className="confirmText">Salario:</td>
                             <td className="confirmText">{this.state.jobData.data.hourpay}</td>

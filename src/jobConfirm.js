@@ -62,10 +62,18 @@ export class JobConfirm extends React.Component {
                            <td className="confirmText">Restaurante:</td>
                            <td className="confirmText">{this.state.jobData.data.restname}</td>
                          </tr>
+                        { this.state.jobData.data.jobtype !== "Otro" &&
                          <tr>
                            <td className="confirmText">Puesto:</td>
                            <td className="confirmText">{this.state.jobData.data.jobtype}</td>
                          </tr>
+                        }
+                        { this.state.jobData.data.jobtype === "Otro" &&
+                         <tr>
+                           <td className="confirmText">Puesto:</td>
+                           <td className="confirmText">{this.state.jobData.data.otro_desc}</td>
+                         </tr>
+                        }
                          <tr>
                            <td className="confirmText">Salario:</td>
                            <td className="confirmText">{this.state.jobData.data.hourpay}</td>
@@ -89,6 +97,10 @@ export class JobConfirm extends React.Component {
                          <tr>
                            <td className="confirmText">Preguntar por:</td>
                            <td className="confirmText">{this.state.jobData.data.contact}</td>
+                         </tr>
+                         <tr>
+                           <td className="confirmText">Mas informacion:</td>
+                           <td className="confirmText">{this.state.jobData.data.extrainfo}</td>
                          </tr>
                     </table>
                     <div className="confirmButtons">

@@ -7,12 +7,12 @@ export class JobForm extends React.Component {
         super(props);
         this.state = {
             value: '',
-            otro: ''
+            otro: '',
+            otro_desc: ''
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.submission = this.submission.bind(this);
-
     }
 
     componentDidMount() {
@@ -22,13 +22,15 @@ export class JobForm extends React.Component {
                 jobData: result.data,
                 restname: result.data.data.restname,
                 jobtype: result.data.data.jobtype,
+                otro_desc: result.data.data.otro_desc,
                 typepay: result.data.data.typepay,
                 area: result.data.data.area,
                 hourpay: result.data.data.hourpay,
                 schedule: result.data.data.schedule,
                 address: result.data.data.address,
                 phone: result.data.data.phone,
-                contact: result.data.data.contact
+                contact: result.data.data.contact,
+                extrainfo: result.data.data.extrainfo
             }, () => {
                 console.log("state in componentDidMount: ", this.state);
             })
@@ -39,7 +41,10 @@ export class JobForm extends React.Component {
 
     submission() {
         if (this.state.jobtype === "Otro") {
-            this.setState({jobtype: this.state.otro})
+            this.setState({
+                jobtype: "Otro",
+                otro_desc: this.state.otro
+            })
         }
     }
 
@@ -91,7 +96,7 @@ export class JobForm extends React.Component {
                     (this.state.jobtype === "Otro") &&
                     <div>
                         <p className="formQuestions" style={{color:"blue"}}><b>Porfavor especifique que busca:</b></p>
-                        <input autoFocus className="formInputs" type="text" name="otro" required="required" onChange={this.handleChange} autofocus="true"/>
+                        <input autoFocus className="formInputs" type="text" name="otro" required="required" onChange={this.handleChange}/>
                     </div>
                     }
 
@@ -175,6 +180,11 @@ export class JobForm extends React.Component {
                     <p className="formQuestions">Por quien preguntar?</p>
                     <input className="formInputs" type="text" name="contact" defaultValue={this.state.jobData && this.state.jobData.data
                     ? this.state.jobData.data.contact
+                    : ''} onChange={this.handleChange}/>
+
+                    <p className="formQuestions">Algo que desee agregar?</p>
+                    <input className="formInputs" type="text" name="extrainfo" defaultValue={this.state.jobData && this.state.jobData.data
+                    ? this.state.jobData.data.extrainfo
                     : ''} onChange={this.handleChange}/>
 
                     <input id="listo" onClick={this.submission} type="submit" value="Listo"/>
