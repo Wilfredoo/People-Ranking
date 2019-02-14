@@ -20,16 +20,16 @@ export class Jobs extends React.Component {
 
     componentDidMount() {
         axios.get("/getJobs").then(result => {
-            for (var i = 0; i < result.data.data.length; i++) {
-                if(result.data.data[i].jobtype !== "Otro") {
-                    result.data.data[i].otro_job = false;
+            // for (var i = 0; i < result.data.data.length; i++) {
+            //     if(result.data.data[i].jobtype !== "Otro") {
+            //         result.data.data[i].otro_job = false;
                     this.setState({jobData: result.data});
-                } else if (result.data.data[i].jobtype === "Otro") {
-                    result.data.data[i].jobtype = result.data.data[i].otro_desc;
-                    result.data.data[i].otro_job = true;
-                    this.setState({jobData: result.data});
-                }
-            }
+            //     } else if (result.data.data[i].jobtype === "Otro") {
+            //         result.data.data[i].jobtype = result.data.data[i].otro_desc;
+            //         result.data.data[i].otro_job = true;
+            //         this.setState({jobData: result.data});
+            //     }
+            // }
         });
 
         axios.get("/getDate").then(result => {
