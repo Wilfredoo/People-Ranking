@@ -70,6 +70,10 @@ export default class Modal extends React.Component {
                             <td className="confirmText">Preguntar por:</td>
                             <td className="confirmText">{this.state.jobData.data.contact}</td>
                         </tr>
+                        <tr>
+                            <td className="confirmText">Mas informacion:</td>
+                            <td className="confirmText">{this.state.jobData.data.extrainfo}</td>
+                        </tr>
                     </table>
                 </main>
             </div>

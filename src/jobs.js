@@ -73,7 +73,7 @@ export class Jobs extends React.Component {
             return null;
         }
         return (
-            <div>
+            <div className="bg">
                 <h1>JobDirecto - Trabajos en NYC</h1>
                 { this.state.show && <Modal id={this.state.selectedJobId} close={this.hideModal}/>}
                 <div className="filtersbutton">
