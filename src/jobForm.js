@@ -89,6 +89,14 @@ export class JobForm extends React.Component {
                         <option selected={this.state.jobData && this.state.jobData.data && this.state.jobData.data.jobtype == 'Busboy'} value="Busboy">Busboy</option>
                         <option selected={this.state.jobData && this.state.jobData.data && this.state.jobData.data.jobtype == 'Delivery Boy'} value="Delivery Boy">Delivery Boy</option>
                         <option selected={this.state.jobData && this.state.jobData.data && this.state.jobData.data.jobtype == 'Deliman'} value="Deliman">Deliman</option>
+                        <option selected={this.state.jobData && this.state.jobData.data && this.state.jobData.data.jobtype == 'Porter'} value="Porter">Porter</option>
+                        <option selected={this.state.jobData && this.state.jobData.data && this.state.jobData.data.jobtype == 'Preparador'} value="Preparador">Preparador</option>
+                        <option selected={this.state.jobData && this.state.jobData.data && this.state.jobData.data.jobtype == 'Mesero/a'} value="Mesero/a">Mesero/a</option>
+                        <option selected={this.state.jobData && this.state.jobData.data && this.state.jobData.data.jobtype == 'Cashier'} value="Cashier">Cashier</option>
+                        <option selected={this.state.jobData && this.state.jobData.data && this.state.jobData.data.jobtype == 'Bartender'} value="Bartender">Bartender</option>
+                        <option selected={this.state.jobData && this.state.jobData.data && this.state.jobData.data.jobtype == 'Barback'} value="Barback">Barback</option>
+                        <option selected={this.state.jobData && this.state.jobData.data && this.state.jobData.data.jobtype == 'Chef'} value="Chef">Chef</option>
+                        <option selected={this.state.jobData && this.state.jobData.data && this.state.jobData.data.jobtype == 'Pizzero'} value="Pizzero">Pizzero</option>
                         <option value="Otro">Otro</option>
                     </select>
 

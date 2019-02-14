@@ -87,6 +87,14 @@ export class Jobs extends React.Component {
                                 <option value="Busboy">Busboy</option>
                                 <option value="Delivery Boy">Delivery Boy</option>
                                 <option value="Deliman">Deliman</option>
+                                <option value="Porter">Porter</option>
+                                <option value="Preparador">Preparador</option>
+                                <option value="Mesero/a">Mesero/a</option>
+                                <option value="Cashier">Cashier</option>
+                                <option value="Bartender">Bartender</option>
+                                <option value="Barback">Barback</option>
+                                <option value="Chef">Chef</option>
+                                <option value="Pizzero">Pizzero</option>
                                 <option value="Otro">Otro</option>
                             </select>
                             <select className="filter" type="text" name="area" onChange={this.handleChangeArea}>
