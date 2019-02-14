@@ -11,15 +11,15 @@ if (process.env.NODE_ENV === 'production') {
 const db = spicedPg(dbUrl);
 
 
-exports.publishJob = function(restname, jobtype, hourpay, typepay, schedule, contact, address, area, phone) {
+exports.publishJob = function(restname, jobtype, hourpay, typepay, schedule, contact, address, area, phone, extrainfo, otro_desc) {
     console.log("check out this restname in publish database: ", restname);
     return db.query(`
         INSERT INTO jobs
-        (restname, jobtype, hourpay, typepay, schedule, contact, address, area, phone)
-        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+        (restname, jobtype, hourpay, typepay, schedule, contact, address, area, phone, extrainfo, otro_desc)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
         returning *;
         `,
-            [restname, jobtype, hourpay, typepay, schedule, contact, address, area, phone]
+            [restname, jobtype, hourpay, typepay, schedule, contact, address, area, phone, extrainfo, otro_desc]
         )
         .then(function(results) {
             return results.rows;
@@ -28,7 +28,7 @@ exports.publishJob = function(restname, jobtype, hourpay, typepay, schedule, con
 
 
 exports.getJobInfo = function(id) {
-    return db.query(`SELECT id, restname, jobtype, hourpay, typepay, schedule, contact, address, phone FROM jobs WHERE id = $1`, [id])
+    return db.query(`SELECT * FROM jobs WHERE id = $1`, [id])
         .then(results => {
             return results.rows[0]
         })
