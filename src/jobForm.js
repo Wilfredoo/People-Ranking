@@ -32,7 +32,6 @@ export class JobForm extends React.Component {
                 contact: result.data.data.contact,
                 extrainfo: result.data.data.extrainfo
             }, () => {
-                console.log("state in componentDidMount: ", this.state);
             })
 
         });
@@ -52,13 +51,11 @@ export class JobForm extends React.Component {
         this.setState({
             [event.target.name]: event.target.value
         }, () => {
-            console.log("state in handle change: ", this.state);
         });
     }
 
     handleSubmit(event) {
         event.preventDefault();
-        console.log("this is my state right before I post: ", this.state);
         axios.post('/finalizeJob', this.state).then(resp => {
             this.props.history.push('/jobConfirm');
             if (resp.data.success) {}

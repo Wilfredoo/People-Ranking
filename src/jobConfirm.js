@@ -24,25 +24,18 @@ export class JobConfirm extends React.Component {
     }
 
     handleChange(event) {
-        this.setState(
-            {
-                [event.target.name]: event.target.value
-            },
-            () => {
-                console.log("state in handle change: ", this.state);
-            }
-        );
+        this.setState({
+            [event.target.name]: event.target.value
+        });
     }
 
     handleSubmit(event) {
         event.preventDefault();
         axios.post('/publishJob', this.state).then(resp => {
             if (resp.data.success) {
-                console.log("state currently: ", this.state);
                 this.setState({
                     jobData: ''
                 })
-                console.log("state currently: ", this.state);
                 this.props.history.push('/');
             }
         })

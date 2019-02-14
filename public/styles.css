@@ -68,9 +68,12 @@ a:link, a:visited {
     background-color: DodgerBlue;
     border: none;
     color: white;
-    padding-right: 20px;
+    margin-right: 20px;
     font-size: 76px;
     cursor: pointer;
+    right: 0;
+    top: 0;
+    position: absolute;
 }
 
 /* job form */
@@ -144,10 +147,11 @@ td {
     background: DodgerBlue;
     border-style: solid;
     width: 80%;
-    height: auto;
+    height: 80%;
     top: 50%;
     left: 50%;
     color: #ffffff;
+    display: flex;
 }
 
 .jobMoment {

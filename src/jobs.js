@@ -29,7 +29,6 @@ export class Jobs extends React.Component {
                     result.data.data[i].otro_job = true;
                     this.setState({jobData: result.data});
                 }
-                console.log("state:", this.state.jobData);
             }
         });
 

@@ -12,7 +12,6 @@ const db = spicedPg(dbUrl);
 
 
 exports.publishJob = function(restname, jobtype, hourpay, typepay, schedule, contact, address, area, phone, extrainfo, otro_desc) {
-    console.log("check out this restname in publish database: ", restname);
     return db.query(`
         INSERT INTO jobs
         (restname, jobtype, hourpay, typepay, schedule, contact, address, area, phone, extrainfo, otro_desc)
@@ -44,7 +43,6 @@ exports.getDate = function(id) {
 exports.getJobDetails = function() {
     return db.query(`SELECT id, restname, jobtype, hourpay, typepay, schedule, contact, address, phone FROM jobs WHERE id = $1`, [id])
         .then(results => {
-            console.log("results in getJobDetails: ", results.rows[0]);
             return results.rows[0]
         })
 }
@@ -52,7 +50,6 @@ exports.getJobDetails = function() {
 exports.getJobforCorrect = function(id) {
     return db.query(`SELECT id, restname, jobtype, hourpay, typepay, schedule, contact, address, phone FROM jobs WHERE id = $1`, [id])
         .then(results => {
-            console.log("results in getJobDetails: ", results.rows[0]);
             return results.rows[0]
         })
 }

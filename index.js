@@ -53,7 +53,6 @@ app.get("/getJobDetails/:id", function(req, res) {
 });
 
 app.get("/getJobforCorrect", function(req, res) {
-    console.log("req session in jobforcorrrect: ", req.session);
     res.json({
         data: req.session.job
     });
@@ -77,18 +76,13 @@ app.post('/finalizeJob', (req, res) => {
 
 
 app.post('/publishJob', (req, res) => {
-    console.log("req.session is here in publish jobbb: ", req.session.job.jobData);
-    console.log("Extra Info: ", req.body.jobData.data.extrainfo);
     return database.publishJob(req.body.jobData.data.restname, req.body.jobData.data.jobtype, req.body.jobData.data.hourpay, req.body.jobData.data.typepay,
         req.body.jobData.data.schedule, req.body.jobData.data.contact, req.body.jobData.data.address, req.body.jobData.data.area, req.body.jobData.data.phone, req.body.jobData.data.extrainfo, req.body.jobData.data.otro_desc).then(() => {
         // req.session.jobId = results[0].id;
-        console.log("got back from db");
         req.session = null;
             res.json({
                 success: true
             });
-            console.log("what is job?", req.session.job);
-            console.log("body? ", req.body);
         })
 })
 
