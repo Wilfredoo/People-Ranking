@@ -1,0 +1,4 @@
+ id | restname | jobtype | otro_desc | hourpay | typepay | schedule | contact | address | phone | area | extrainfo | created_at 
+----+----------+---------+-----------+---------+---------+----------+---------+---------+-------+------+-----------+------------
+(0 rows)
+
