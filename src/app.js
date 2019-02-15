@@ -1,7 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import {JobConfirm} from './jobConfirm.js';
-import {JobForm} from './jobForm.js';
 import {Jobs} from './jobs.js';
 import {BrowserRouter, Route} from 'react-router-dom'
 import ReactGA from 'react-ga';
