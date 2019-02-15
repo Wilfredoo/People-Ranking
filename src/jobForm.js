@@ -16,7 +16,6 @@ export class JobForm extends React.Component {
     }
 
     componentDidMount() {
-
         axios.get("/getJobforCorrect").then(result => {
             this.setState({
                 jobData: result.data,
@@ -31,11 +30,8 @@ export class JobForm extends React.Component {
                 phone: result.data.data.phone,
                 contact: result.data.data.contact,
                 extrainfo: result.data.data.extrainfo
-            }, () => {
-            })
-
+            });
         });
-
     }
 
     submission() {
@@ -50,7 +46,6 @@ export class JobForm extends React.Component {
     handleChange(event) {
         this.setState({
             [event.target.name]: event.target.value
-        }, () => {
         });
     }
 
