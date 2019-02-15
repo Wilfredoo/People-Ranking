@@ -17,9 +17,17 @@ export class JobConfirm extends React.Component {
             if (result.data.success == false) {
                 return null;
             }
-            this.setState({
-                jobData: result.data
-            })
+            if(result.data.data.otro_desc === "") {
+                result.data.data.otro_desc = result.data.data.jobtype;
+                this.setState({
+                    jobData: result.data
+                })
+            } else {
+                this.setState({
+                    jobData: result.data
+                })
+            }
+            console.log(result.data);
         });
     }
 

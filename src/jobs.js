@@ -42,7 +42,6 @@ export class Jobs extends React.Component {
             [event.target.name]: event.target.value,
             userSelectionJob: event.target.value
         })
-
     }
 
     handleChangeArea(event) {
@@ -66,6 +65,10 @@ export class Jobs extends React.Component {
     hideModal() {
         this.setState({show: false});
     }
+
+    // <h3>{data.restname}
+    //     <span className="busca"> busca </span>
+    //     {data.jobtype}</h3>
 
     render() {
         if (!this.state.jobData) {
@@ -118,7 +121,7 @@ export class Jobs extends React.Component {
                                     <div onClick={e => this.handleClick(data.id)} className="jobData" key={data.id}>
                                         <h3>{data.restname}
                                             <span className="busca"> busca </span>
-                                            {data.jobtype}</h3>
+                                            {data.otro_desc}</h3>
 
                                         <p>Area: {data.area}</p>
                                         <div className="jobMoment"><Moment fromNow>{data.created_at}</Moment></div>
@@ -136,7 +139,7 @@ export class Jobs extends React.Component {
                                     <div onClick={e => this.handleClick(data.id)} className="jobData" key={data.id}>
                                         <h3>{data.restname}
                                             <span className="busca"> busca </span>
-                                            {data.jobtype}</h3>
+                                            {data.otro_desc}</h3>
 
                                         <p>Area: {data.area}</p>
                                         <div className="jobMoment"><Moment fromNow>{data.created_at}</Moment></div>
@@ -154,7 +157,7 @@ export class Jobs extends React.Component {
                                     <div onClick={e => this.handleClick(data.id)} className="jobData" key={data.id}>
                                         <h3>{data.restname}
                                             <span className="busca"> busca </span>
-                                            {data.jobtype}</h3>
+                                            {data.otro_desc}</h3>
 
                                         <p>Area: {data.area}</p>
                                         <div className="jobMoment"><Moment fromNow>{data.created_at}</Moment></div>
@@ -172,7 +175,7 @@ export class Jobs extends React.Component {
                                     <div onClick={e => this.handleClick(data.id)} className="jobData" key={data.id}>
                                         <h3>{data.restname}
                                             <span className="busca"> busca </span>
-                                            {data.jobtype}</h3>
+                                            {data.otro_desc}</h3>
 
                                         <p>Area: {data.area}</p>
                                         <div className="jobMoment"><Moment fromNow>{data.created_at}</Moment></div>
@@ -190,7 +193,7 @@ export class Jobs extends React.Component {
                                     <div onClick={e => this.handleClick(data.id)} className="jobData" key={data.id}>
                                         <h3>{data.restname}
                                             <span className="busca"> busca </span>
-                                            {data.jobtype}</h3>
+                                            {data.otro_desc}</h3>
 
                                         <p>Area: {data.area}</p>
                                         <div className="jobMoment"><Moment fromNow>{data.created_at}</Moment></div>
@@ -207,7 +210,7 @@ export class Jobs extends React.Component {
                                 <div onClick={e => this.handleClick(data.id)} className="jobData" key={data.id}>
                                     <h3>{data.restname}
                                         <span className="busca"> busca </span>
-                                        {data.jobtype}</h3>
+                                        {data.otro_desc}</h3>
                                     <p>Area: {data.area}</p>
                                     <div className="jobMoment"><Moment fromNow>{data.created_at}</Moment></div>
                                 </div>
