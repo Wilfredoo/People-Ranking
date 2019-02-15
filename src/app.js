@@ -19,10 +19,7 @@ export class App extends React.Component {
         return (
             <BrowserRouter>
                 <div>
-                    <Route exact="exact" path="/jobform" component={JobForm}/>
                     <Route exact="exact" path="/" component={Jobs}/>
-                    <Route exact="exact" path="/jobConfirm" component={JobConfirm}/>
-                    <Route path = "/job/:id" render = {props => (<JobDetails {...props} key = {props.match.url} /> )} />
                 </div>
             </BrowserRouter>
         )
