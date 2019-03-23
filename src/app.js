@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
-import {Jobs} from './jobs.js';
+import {People} from './people.js';
+import {LogIn} from './login.js';
+import {Register} from './register.js';
 import {BrowserRouter, Route} from 'react-router-dom'
 import ReactGA from 'react-ga';
 
@@ -17,7 +19,11 @@ export class App extends React.Component {
         return (
             <BrowserRouter>
                 <div>
-                    <Route exact="exact" path="/" component={Jobs}/>
+                    <Route exact="exact" path="/" component={People}/>
+                    <Route exact="exact" path="/register" component={Register}/>
+                    <Route exact="exact" path="/login" component={LogIn}/>
+
+
                 </div>
             </BrowserRouter>
         )
