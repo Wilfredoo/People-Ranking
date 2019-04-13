@@ -31,7 +31,7 @@ export class People extends React.Component {
     }
     return (
       <div className="bg">
-      
+
         <h1>Ranking - A modest ranking of simple people</h1>
         <h3>You are logged in, ALIAS</h3>
         <p>
